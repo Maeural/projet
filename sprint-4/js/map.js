@@ -97,6 +97,9 @@ function renderMapMarkers() {
         <button onclick="selectZone('${zone.id}')" style="background:#0284c7; color:white; border:none; padding:5px 10px; border-radius:4px; font-size:0.75rem; font-weight:600; cursor:pointer; width:100%;">
           Fiche détaillée ➜
         </button>
+        <button onclick="filterMissionsByZone('${zone.name}')" style="background:white; color:#0284c7; border:1.5px solid #0284c7; padding:5px 10px; border-radius:4px; font-size:0.75rem; font-weight:600; cursor:pointer; width:100%; margin-top:6px;">
+          📅 Missions
+        </button>
       </div>
     `;
 
