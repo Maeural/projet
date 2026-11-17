@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RIC — Mon Impact & Badges Citoyens | Océanik Brest</title>
-  
+  <title>RIC — Mon Impact & Badges Citoyens</title>
+
   <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
 
   <!-- BARRE AGILE TP SPRINT 4 (MVP FINAL) -->
@@ -14,7 +16,8 @@
     <div class="tp-control-group">
       <span class="tp-badge-tag" style="background:#38bdf8; color:#0f172a;">Sprint 4</span>
       <strong>RIC / Océanik</strong>
-      <span style="opacity: 0.85;">| <strong>Incrément Sprint 4 — MVP Final</strong> (72 pts) • Allan (PO) • Mathis (SM) • Tim, Jules-Yann, Simon-Noël (Dev)</span>
+      <span style="opacity: 0.85;">| <strong>Incrément Sprint 4 — MVP Final</strong> (72 pts) • Allan (PO) • Mathis (SM)
+        • Tim, Jules-Yann, Simon-Noël (Dev)</span>
     </div>
 
     <!-- PERSONA SWITCHER & OUTILS SCRUM -->
@@ -72,7 +75,8 @@
   <aside class="sprint-scope-banner" id="sprint-banner">
     <div>
       <strong id="sprint-banner-title">Sprint 4 — Valorisation & Reconnaissance citoyenne (US-14, 15, 16)</strong>
-      <span id="sprint-banner-desc" style="margin-left: 10px; opacity: 0.9;">Suivez votre impact validé, gagnez des points transparents et débloquez des médailles.</span>
+      <span id="sprint-banner-desc" style="margin-left: 10px; opacity: 0.9;">Suivez votre impact validé, gagnez des
+        points transparents et débloquez des médailles.</span>
     </div>
     <div id="sprint-banner-badge" class="tp-badge-tag" style="background:#0284c7; color:#fff;">
       Incrément Scrum validé
@@ -81,27 +85,33 @@
 
   <!-- CONTENU : PROFIL & BADGES -->
   <main class="main-content">
-    
+
     <!-- CARTE D'IDENTITÉ CITOYENNE (US-14) -->
     <div class="card" style="background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);">
       <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
         <div style="display:flex; gap:16px; align-items:center;">
-          <div style="width:68px; height:68px; border-radius:50%; background:#0284c7; color:white; display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:800; box-shadow:var(--shadow-md);">
+          <div
+            style="width:68px; height:68px; border-radius:50%; background:#0284c7; color:white; display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:800; box-shadow:var(--shadow-md);">
             <span id="profile-avatar-letter">L</span>
           </div>
           <div>
             <div style="display:flex; align-items:center; gap:8px;">
               <h2 style="font-size:1.4rem; font-weight:800;" id="profile-user-name">Léa Morvan</h2>
-              <span class="tp-badge-tag" style="background:#e0f2fe; color:#0369a1;" id="profile-role-tag">Citoyenne engagée</span>
+              <span class="tp-badge-tag" style="background:#e0f2fe; color:#0369a1;" id="profile-role-tag">Citoyenne
+                engagée</span>
             </div>
-            <p style="color:var(--neutral-mid); font-size:0.85rem;" id="profile-subtitle">Brest • Membre active depuis 2026</p>
+            <p style="color:var(--neutral-mid); font-size:0.85rem;" id="profile-subtitle">Brest • Membre active depuis
+              2026</p>
           </div>
         </div>
 
         <div style="text-align:right;">
-          <div style="font-size:0.75rem; text-transform:uppercase; color:#64748b; font-weight:700;">Niveau d'engagement</div>
-          <div style="font-size:1.6rem; font-weight:800; color:#0284c7;" id="profile-level">Niveau 2 • Gardien de Rade</div>
-          <a href="#how-points-work" id="btn-show-points-rule" style="font-size:0.75rem; color:#0d9488; text-decoration:underline; font-weight:600;">
+          <div style="font-size:0.75rem; text-transform:uppercase; color:#64748b; font-weight:700;">Niveau d'engagement
+          </div>
+          <div style="font-size:1.6rem; font-weight:800; color:#0284c7;" id="profile-level">Niveau 2 • Gardien de Rade
+          </div>
+          <a href="#how-points-work" id="btn-show-points-rule"
+            style="font-size:0.75rem; color:#0d9488; text-decoration:underline; font-weight:600;">
             ℹ️ Comment gagner des points d'impact ?
           </a>
         </div>
@@ -122,7 +132,8 @@
           <div class="stat-details">
             <h4>Déchets ramassés</h4>
             <div class="stat-number" id="profile-kg">42 kg</div>
-            <div class="stat-subtext"><span class="valid" id="profile-kg-valid">35 kg validés</span> • <span class="pending" id="profile-kg-pending">7 kg en attente</span></div>
+            <div class="stat-subtext"><span class="valid" id="profile-kg-valid">35 kg validés</span> • <span
+                class="pending" id="profile-kg-pending">7 kg en attente</span></div>
           </div>
         </div>
         <div class="stat-box secondary">
@@ -140,9 +151,10 @@
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">🏅 Médailles & Badges débloqués (US-16)</h3>
-        <span style="font-size:0.82rem; color:var(--neutral-mid);">Récompense la régularité, la fiabilité et l'esprit collectif</span>
+        <span style="font-size:0.82rem; color:var(--neutral-mid);">Récompense la régularité, la fiabilité et l'esprit
+          collectif</span>
       </div>
-      
+
       <div class="badges-showcase" id="badges-container"></div>
     </div>
 
@@ -173,12 +185,15 @@
         <ul style="padding-left:20px; font-size:0.85rem; line-height:1.8; color:#334155;">
           <li><strong>+50 points :</strong> Pour chaque participation validée à une mission collective.</li>
           <li><strong>+20 points par heure d'engagement :</strong> Valorisation du temps bénévole sur l'estran.</li>
-          <li><strong>+2 points par kilo de déchets collectés :</strong> Plafonné pour éviter toute tentation de sur-déclaration.</li>
+          <li><strong>+2 points par kilo de déchets collectés :</strong> Plafonné pour éviter toute tentation de
+            sur-déclaration.</li>
           <li><strong>+30 points :</strong> Pour le rôle de référent d'équipe ou animateur bénévole.</li>
           <li><strong>+15 points :</strong> Pour un signalement citoyen vérifié et utile sur la carte.</li>
         </ul>
-        <div style="background:#e0f2fe; padding:10px; border-radius:var(--radius-sm); margin-top:16px; font-size:0.8rem; color:#0369a1;">
-          💡 <em>Note éthique PO : Les points d'impact ne représentent aucun gain financier, mais une reconnaissance citoyenne et territoriale.</em>
+        <div
+          style="background:#e0f2fe; padding:10px; border-radius:var(--radius-sm); margin-top:16px; font-size:0.8rem; color:#0369a1;">
+          💡 <em>Note éthique PO : Les points d'impact ne représentent aucun gain financier, mais une reconnaissance
+            citoyenne et territoriale.</em>
         </div>
       </div>
       <div class="modal-footer">
@@ -223,14 +238,18 @@
             </div>
           </div>
 
-          <div style="background:#f0fdf4; border:1px solid #bbf7d0; padding:12px; border-radius:var(--radius-sm); margin-bottom:16px;">
-            <div style="font-size:0.8rem; color:#166534; font-weight:700;">Calcul automatique du poids total estimé :</div>
-            <div style="font-size:1.3rem; font-weight:800; color:#15803d;" id="declare-weight-preview">14 kg estimés</div>
+          <div
+            style="background:#f0fdf4; border:1px solid #bbf7d0; padding:12px; border-radius:var(--radius-sm); margin-bottom:16px;">
+            <div style="font-size:0.8rem; color:#166534; font-weight:700;">Calcul automatique du poids total estimé :
+            </div>
+            <div style="font-size:1.3rem; font-weight:800; color:#15803d;" id="declare-weight-preview">14 kg estimés
+            </div>
           </div>
 
           <div class="form-group">
             <label class="form-label" for="declare-notes">Commentaires ou types de déchets trouvés</label>
-            <textarea id="declare-notes" class="form-control" rows="2" placeholder="Ex: Plastiques, bouts de cordages..."></textarea>
+            <textarea id="declare-notes" class="form-control" rows="2"
+              placeholder="Ex: Plastiques, bouts de cordages..."></textarea>
           </div>
 
           <div class="modal-footer" style="padding-left:0; padding-right:0;">
@@ -250,9 +269,12 @@
         <button class="modal-close-btn" style="color:white;">&times;</button>
       </div>
       <div class="modal-body">
-        <div style="background:#f8fafc; padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); margin-bottom:16px;">
-          <h4 style="font-size:0.95rem; margin-bottom:6px; color:#0f172a;">👥 Organisation de l'Équipe Scrum (TD1 / TP)</h4>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:8px; font-size:0.82rem;">
+        <div
+          style="background:#f8fafc; padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); margin-bottom:16px;">
+          <h4 style="font-size:0.95rem; margin-bottom:6px; color:#0f172a;">👥 Organisation de l'Équipe Scrum (TD1 / TP)
+          </h4>
+          <div
+            style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:8px; font-size:0.82rem;">
             <div><strong>Product Owner :</strong> Allan Steed</div>
             <div><strong>Scrum Master :</strong> Mathis</div>
             <div><strong>Développeurs :</strong> Tim, Jules-Yann, Simon-Noël</div>
@@ -278,4 +300,5 @@
   <script src="js/sprint.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>

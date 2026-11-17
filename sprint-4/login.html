@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RIC — Connexion & Authentification | Sprint 4 MVP Océanik</title>
+  <title>RIC — Connexion & Authentification</title>
   <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
 
   <!-- BARRE AGILE TP SPRINT 4 (MVP FINAL) -->
@@ -13,7 +15,8 @@
     <div class="tp-control-group">
       <span class="tp-badge-tag" style="background:#38bdf8; color:#0f172a;">Sprint 4</span>
       <strong>RIC / Océanik</strong>
-      <span style="opacity: 0.85;">| <strong>Incrément Sprint 4 — MVP Final</strong> (72 pts) • Allan (PO) • Mathis (SM) • Tim, Jules-Yann, Simon-Noël (Dev)</span>
+      <span style="opacity: 0.85;">| <strong>Incrément Sprint 4 — MVP Final</strong> (72 pts) • Allan (PO) • Mathis (SM)
+        • Tim, Jules-Yann, Simon-Noël (Dev)</span>
     </div>
 
     <!-- PERSONA SWITCHER & OUTILS SCRUM -->
@@ -76,7 +79,8 @@
   <aside class="sprint-scope-banner" id="sprint-banner">
     <div>
       <strong id="sprint-banner-title">Sprint 4 — MVP Complet : Valorisation, Fédérer & Clôture</strong>
-      <span id="sprint-banner-desc" style="margin-left: 10px; opacity: 0.9;">Toutes les fonctionnalités des US-01 à US-19 sont déployées.</span>
+      <span id="sprint-banner-desc" style="margin-left: 10px; opacity: 0.9;">Toutes les fonctionnalités des US-01 à
+        US-19 sont déployées.</span>
     </div>
     <div id="sprint-banner-badge" class="tp-badge-tag" style="background:#0284c7; color:#fff;">
       Incrément Scrum validé
@@ -120,22 +124,28 @@
         <form id="form-login" onsubmit="handleLoginSubmit(event)">
           <div class="form-group">
             <label for="login-email">Adresse e-mail ou identifiant</label>
-            <input type="email" id="login-email" class="form-control" placeholder="nom@email.bzh" required value="lea.morvan@email.bzh">
+            <input type="email" id="login-email" class="form-control" placeholder="nom@email.bzh" required
+              value="lea.morvan@email.bzh">
           </div>
 
           <div class="form-group">
             <label for="login-password">Mot de passe</label>
-            <input type="password" id="login-password" class="form-control" placeholder="••••••••" required value="password123">
+            <input type="password" id="login-password" class="form-control" placeholder="••••••••" required
+              value="password123">
           </div>
 
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; font-size:0.8rem; color:#64748b;">
+          <div
+            style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; font-size:0.8rem; color:#64748b;">
             <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
               <input type="checkbox" checked> Se souvenir de moi
             </label>
-            <a href="#" style="color:#0284c7; text-decoration:none;" onclick="alert('Pour cette démonstration académique, cliquez sur l\'un des personas ci-dessous pour préremplir automatiquement les identifiants.'); return false;">Mot de passe oublié ?</a>
+            <a href="#" style="color:#0284c7; text-decoration:none;"
+              onclick="alert('Pour cette démonstration académique, cliquez sur l\'un des personas ci-dessous pour préremplir automatiquement les identifiants.'); return false;">Mot
+              de passe oublié ?</a>
           </div>
 
-          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:12px; font-weight:700;">
+          <button type="submit" class="btn btn-primary"
+            style="width:100%; justify-content:center; padding:12px; font-weight:700;">
             Se connecter ➜
           </button>
         </form>
@@ -166,10 +176,12 @@
 
           <div class="form-group">
             <label for="reg-password">Créer un mot de passe</label>
-            <input type="password" id="reg-password" class="form-control" placeholder="6 caractères minimum" minlength="6" required value="monmotdepasse">
+            <input type="password" id="reg-password" class="form-control" placeholder="6 caractères minimum"
+              minlength="6" required value="monmotdepasse">
           </div>
 
-          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:12px; font-weight:700;">
+          <button type="submit" class="btn btn-primary"
+            style="width:100%; justify-content:center; padding:12px; font-weight:700;">
             Créer mon compte citoyen (US-07) ➜
           </button>
         </form>
@@ -178,16 +190,19 @@
         <div class="persona-shortcuts">
           <div class="persona-shortcuts-title">
             <span>💡 Démonstration Scrum — Personas du Projet</span>
-            <span style="font-size:0.7rem; color:#0284c7; text-transform:none; font-weight:600;">1 clic pour tester</span>
+            <span style="font-size:0.7rem; color:#0284c7; text-transform:none; font-weight:600;">1 clic pour
+              tester</span>
           </div>
 
           <div class="persona-shortcut-grid">
             <div class="persona-shortcut-card" onclick="quickLoginPersona('lea')">
               <div style="display:flex; align-items:center; gap:10px;">
-                <span style="width:32px; height:32px; border-radius:50%; background:#0284c7; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">L</span>
+                <span
+                  style="width:32px; height:32px; border-radius:50%; background:#0284c7; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">L</span>
                 <div>
                   <div style="font-size:0.85rem; font-weight:700; color:#0f172a;">Léa Morvan</div>
-                  <div style="font-size:0.75rem; color:#64748b;">Citoyenne engagée (P1) • Profil, badges & récoltes</div>
+                  <div style="font-size:0.75rem; color:#64748b;">Citoyenne engagée (P1) • Profil, badges & récoltes
+                  </div>
                 </div>
               </div>
               <span class="tp-badge-tag" style="background:#e0f2fe; color:#0369a1;">P1</span>
@@ -195,10 +210,12 @@
 
             <div class="persona-shortcut-card" onclick="quickLoginPersona('marc')">
               <div style="display:flex; align-items:center; gap:10px;">
-                <span style="width:32px; height:32px; border-radius:50%; background:#0d9488; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">M</span>
+                <span
+                  style="width:32px; height:32px; border-radius:50%; background:#0d9488; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">M</span>
                 <div>
                   <div style="font-size:0.85rem; font-weight:700; color:#0f172a;">Marc Le Goff</div>
-                  <div style="font-size:0.75rem; color:#64748b;">Organisateur bénévole (P2) • Créateur de chantiers</div>
+                  <div style="font-size:0.75rem; color:#64748b;">Organisateur bénévole (P2) • Créateur de chantiers
+                  </div>
                 </div>
               </div>
               <span class="tp-badge-tag" style="background:#ccfbf1; color:#0f766e;">P2</span>
@@ -206,10 +223,12 @@
 
             <div class="persona-shortcut-card" onclick="quickLoginPersona('sofia')">
               <div style="display:flex; align-items:center; gap:10px;">
-                <span style="width:32px; height:32px; border-radius:50%; background:#d97706; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">S</span>
+                <span
+                  style="width:32px; height:32px; border-radius:50%; background:#d97706; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">S</span>
                 <div>
                   <div style="font-size:0.85rem; font-weight:700; color:#0f172a;">Sofia Berthelot</div>
-                  <div style="font-size:0.75rem; color:#64748b;">Référente scientifique (P2) • Validation des pesées</div>
+                  <div style="font-size:0.75rem; color:#64748b;">Référente scientifique (P2) • Validation des pesées
+                  </div>
                 </div>
               </div>
               <span class="tp-badge-tag" style="background:#fef3c7; color:#b45309;">P2</span>
@@ -217,10 +236,12 @@
 
             <div class="persona-shortcut-card" onclick="quickLoginPersona('camille')">
               <div style="display:flex; align-items:center; gap:10px;">
-                <span style="width:32px; height:32px; border-radius:50%; background:#7c3aed; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">C</span>
+                <span
+                  style="width:32px; height:32px; border-radius:50%; background:#7c3aed; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">C</span>
                 <div>
                   <div style="font-size:0.85rem; font-weight:700; color:#0f172a;">Camille Roussel</div>
-                  <div style="font-size:0.75rem; color:#64748b;">Responsable RSE (P3) • Challenge entreprises & mécénat</div>
+                  <div style="font-size:0.75rem; color:#64748b;">Responsable RSE (P3) • Challenge entreprises & mécénat
+                  </div>
                 </div>
               </div>
               <span class="tp-badge-tag" style="background:#ede9fe; color:#6d28d9;">P3</span>
@@ -228,10 +249,12 @@
 
             <div class="persona-shortcut-card" onclick="quickLoginPersona('kerneis')">
               <div style="display:flex; align-items:center; gap:10px;">
-                <span style="width:32px; height:32px; border-radius:50%; background:#059669; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">Y</span>
+                <span
+                  style="width:32px; height:32px; border-radius:50%; background:#059669; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">Y</span>
                 <div>
                   <div style="font-size:0.85rem; font-weight:700; color:#0f172a;">Yann Kernéis</div>
-                  <div style="font-size:0.75rem; color:#64748b;">Enseignant (P3) • Sorties scolaires & fiches de sensibilisation</div>
+                  <div style="font-size:0.75rem; color:#64748b;">Enseignant (P3) • Sorties scolaires & fiches de
+                    sensibilisation</div>
                 </div>
               </div>
               <span class="tp-badge-tag" style="background:#d1fae5; color:#047857;">P3</span>
@@ -239,10 +262,12 @@
 
             <div class="persona-shortcut-card" onclick="logout()">
               <div style="display:flex; align-items:center; gap:10px;">
-                <span style="width:32px; height:32px; border-radius:50%; background:#94a3b8; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">?</span>
+                <span
+                  style="width:32px; height:32px; border-radius:50%; background:#94a3b8; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">?</span>
                 <div>
                   <div style="font-size:0.85rem; font-weight:700; color:#0f172a;">Visiteur Anonyme</div>
-                  <div style="font-size:0.75rem; color:#64748b;">Naviguer sans authentification (Accès libre carte & fiches)</div>
+                  <div style="font-size:0.75rem; color:#64748b;">Naviguer sans authentification (Accès libre carte &
+                    fiches)</div>
                 </div>
               </div>
               <span class="tp-badge-tag" style="background:#f1f5f9; color:#475569;">Déconnexion</span>
@@ -340,7 +365,7 @@
     function handleLoginSubmit(e) {
       e.preventDefault();
       const email = document.getElementById('login-email').value.trim().toLowerCase();
-      
+
       let foundId = 'lea';
       for (const [id, persona] of Object.entries(appState.personas)) {
         if (persona.email && persona.email.toLowerCase() === email) {
@@ -397,4 +422,5 @@
     }
   </script>
 </body>
+
 </html>

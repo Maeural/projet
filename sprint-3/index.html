@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RIC — Sprint 3 : Carte & Déclaration | Océanik Brest</title>
-  
+  <title>RIC — Carte & Déclaration</title>
+
   <!-- Leaflet CSS pour la cartographie OpenStreetMap -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
 
   <!-- BARRE AGILE TP SPRINT 3 -->
@@ -16,7 +18,8 @@
     <div class="tp-control-group">
       <span class="tp-badge-tag" style="background:#38bdf8; color:#0f172a;">Sprint 3</span>
       <strong>RIC / Océanik</strong>
-      <span style="opacity: 0.85;">| <strong>Incrément Sprint 3</strong> (15 pts) • Allan (PO) • Mathis (SM) • Tim, Jules-Yann, Simon-Noël (Dev)</span>
+      <span style="opacity: 0.85;">| <strong>Incrément Sprint 3</strong> (15 pts) • Allan (PO) • Mathis (SM) • Tim,
+        Jules-Yann, Simon-Noël (Dev)</span>
     </div>
 
     <!-- PERSONA SWITCHER & OUTILS SCRUM -->
@@ -68,7 +71,8 @@
   <aside class="sprint-scope-banner" id="sprint-banner">
     <div>
       <strong id="sprint-banner-title">Sprint 3 — Cœur du MVP : Récolte, Sofia & Carte au vert (15 pts)</strong>
-      <span id="sprint-banner-desc" style="margin-left: 10px; opacity: 0.9;">US livrées : US-11 (Déclaration de récolte), US-12 (Validation Sofia & passage de la zone au vert), US-13 (Signalement zone sale).</span>
+      <span id="sprint-banner-desc" style="margin-left: 10px; opacity: 0.9;">US livrées : US-11 (Déclaration de
+        récolte), US-12 (Validation Sofia & passage de la zone au vert), US-13 (Signalement zone sale).</span>
     </div>
     <div class="tp-badge-tag" id="sprint-banner-badge" style="background:#0284c7; color:#fff;">
       Incrément Sprint 3 Livré
@@ -77,7 +81,7 @@
 
   <!-- CONTENU : CARTE -->
   <main class="main-content">
-    
+
     <!-- INDICATEURS D'IMPACT GLOBAL (US-03) -->
     <div class="impact-stats-grid">
       <div class="stat-box primary">
@@ -86,7 +90,7 @@
           <h4>Déchets collectés (Rade)</h4>
           <div class="stat-number" id="kpi-total-kg">1 420 kg</div>
           <div class="stat-subtext">
-            <span class="valid" id="kpi-valid-kg">1 240 kg validés</span> • 
+            <span class="valid" id="kpi-valid-kg">1 240 kg validés</span> •
             <span class="pending" id="kpi-pending-kg">180 kg déclarés</span>
           </div>
         </div>
@@ -134,7 +138,8 @@
           </div>
 
           <div style="display:flex; gap:8px; align-items:center;">
-            <button class="btn btn-secondary btn-sm" id="recenter-map-btn" title="Recentrer la carte sur la Rade de Brest">
+            <button class="btn btn-secondary btn-sm" id="recenter-map-btn"
+              title="Recentrer la carte sur la Rade de Brest">
               🎯 Recentrer
             </button>
             <button class="btn btn-warning btn-sm" id="trigger-report-btn">
@@ -147,7 +152,8 @@
         <div id="rade-map" style="height: 520px; width: 100%; min-height: 520px;"></div>
 
         <div class="map-disclaimer">
-          ℹ️ <strong>Note de transparence :</strong> État estimé à partir des signalements et actions déclarées par la communauté citoyenne.
+          ℹ️ <strong>Note de transparence :</strong> État estimé à partir des signalements et actions déclarées par la
+          communauté citoyenne.
         </div>
       </div>
 
@@ -198,9 +204,12 @@
             </div>
           </div>
 
-          <div style="background:#f0fdf4; border:1px solid #bbf7d0; padding:12px; border-radius:var(--radius-sm); margin-bottom:16px;">
-            <div style="font-size:0.8rem; color:#166534; font-weight:700;">Calcul automatique du poids total estimé :</div>
-            <div style="font-size:1.3rem; font-weight:800; color:#15803d;" id="declare-weight-preview">14 kg estimés</div>
+          <div
+            style="background:#f0fdf4; border:1px solid #bbf7d0; padding:12px; border-radius:var(--radius-sm); margin-bottom:16px;">
+            <div style="font-size:0.8rem; color:#166534; font-weight:700;">Calcul automatique du poids total estimé :
+            </div>
+            <div style="font-size:1.3rem; font-weight:800; color:#15803d;" id="declare-weight-preview">14 kg estimés
+            </div>
           </div>
 
           <div class="form-grid-2">
@@ -216,7 +225,8 @@
 
           <div class="form-group">
             <label class="form-label" for="declare-notes">Commentaires ou types de déchets trouvés</label>
-            <textarea id="declare-notes" class="form-control" rows="2" placeholder="Ex: Bouts de filets et mégots..."></textarea>
+            <textarea id="declare-notes" class="form-control" rows="2"
+              placeholder="Ex: Bouts de filets et mégots..."></textarea>
           </div>
 
           <div class="modal-footer" style="padding-left:0; padding-right:0;">
@@ -239,7 +249,8 @@
         <form id="form-report-zone">
           <div class="form-group">
             <label class="form-label" for="report-sector">Localisation / Secteur *</label>
-            <input type="text" id="report-sector" class="form-control" placeholder="Ex: Rive sud du Moulin Blanc" required>
+            <input type="text" id="report-sector" class="form-control" placeholder="Ex: Rive sud du Moulin Blanc"
+              required>
           </div>
 
           <div class="form-grid-2">
@@ -264,7 +275,8 @@
 
           <div class="form-group">
             <label class="form-label" for="report-desc">Description courte *</label>
-            <textarea id="report-desc" class="form-control" rows="3" placeholder="Précisez l'accès, l'ampleur..." required></textarea>
+            <textarea id="report-desc" class="form-control" rows="3" placeholder="Précisez l'accès, l'ampleur..."
+              required></textarea>
           </div>
 
           <div class="modal-footer" style="padding-left:0; padding-right:0;">
@@ -284,9 +296,12 @@
         <button class="modal-close-btn" style="color:white;">&times;</button>
       </div>
       <div class="modal-body">
-        <div style="background:#f8fafc; padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); margin-bottom:16px;">
-          <h4 style="font-size:0.95rem; margin-bottom:6px; color:#0f172a;">👥 Organisation de l'Équipe Scrum (TD1 / TP)</h4>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:8px; font-size:0.82rem;">
+        <div
+          style="background:#f8fafc; padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); margin-bottom:16px;">
+          <h4 style="font-size:0.95rem; margin-bottom:6px; color:#0f172a;">👥 Organisation de l'Équipe Scrum (TD1 / TP)
+          </h4>
+          <div
+            style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:8px; font-size:0.82rem;">
             <div><strong>Product Owner :</strong> Allan Steed</div>
             <div><strong>Scrum Master :</strong> Mathis</div>
             <div><strong>Développeurs :</strong> Tim, Jules-Yann, Simon-Noël</div>
@@ -330,4 +345,5 @@
   <script src="js/sprint.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>
