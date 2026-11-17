@@ -1,0 +1,6 @@
+/* sprint-1/css/main.css - Styles exclusifs au Sprint 1 (Fondations & Carte) */
+@import "variables.css";
+@import "base.css";
+@import "header.css";
+@import "map.css";
+@import "modals.css";

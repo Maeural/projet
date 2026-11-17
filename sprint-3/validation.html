@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIC — Sprint 3 : Validation Impact | Sofia</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- BARRE AGILE TP SPRINT 3 -->
+  <header class="tp-control-bar">
+    <div class="tp-control-group">
+      <span class="tp-badge-tag" style="background:#38bdf8; color:#0f172a;">Sprint 3</span>
+      <strong>RIC / Océanik</strong>
+      <span style="opacity: 0.85;">| <strong>Incrément Sprint 3</strong> (15 pts) • Allan (PO) • Mathis (SM) • Tim, Jules-Yann, Simon-Noël (Dev)</span>
+    </div>
+
+    <div class="tp-control-group">
+      <label for="persona-select" style="font-size: 0.75rem; font-weight: 600;">Persona :</label>
+      <select id="persona-select" class="persona-select">
+        <option value="sofia" selected>Sofia Berthelot (Référente Impact - P2)</option>
+        <option value="lea">Léa Morvan (Citoyenne engagée - P1)</option>
+        <option value="marc">Marc Le Goff (Organisateur bénévole - P2)</option>
+        <option value="visiteur">Visiteur Anonyme</option>
+      </select>
+
+      <button class="tp-action-btn" id="open-scrum-board-btn">📋 Dossier Scrum TP</button>
+      <button class="tp-action-btn" id="reset-data-btn">🔄 Réinitialiser</button>
+    </div>
+  </header>
+
+  <!-- NAVIGATION SPRINT 3 -->
+  <header class="app-header">
+    <a href="index.html" class="brand">
+      <img src="logo.png" alt="Logo RIC Océanik" class="brand-logo-img">
+      <div class="brand-text">
+        <h1>RIC <span>• Océanik</span></h1>
+        <p class="brand-tagline">Rade Impact Collectif — Préservons ensemble le littoral brestois</p>
+      </div>
+    </a>
+
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link" id="nav-map">🗺️ Carte & Littoral</a>
+      <a href="missions.html" class="nav-link" id="nav-missions">📅 Missions</a>
+      <a href="validation.html" class="nav-link active" id="nav-validation">⚖️ Validation Impact <span class="badge-counter" id="validation-pending-count">1</span></a>
+    </nav>
+
+    <div id="user-header-status"></div>
+  </header>
+
+  <!-- BANNER SPRINT 3 -->
+  <aside class="sprint-scope-banner" id="sprint-banner">
+    <div>
+      <strong id="sprint-banner-title">Sprint 3 — Modération & Validation Scientifique (US-12)</strong>
+      <span id="sprint-banner-desc" style="margin-left: 10px; opacity: 0.9;">Validez les récoltes pour mettre à jour les statistiques officielles et faire passer les zones au VERT.</span>
+    </div>
+    <div class="tp-badge-tag" id="sprint-banner-badge" style="background:#0284c7; color:#fff;">
+      Incrément Sprint 3 Livré
+    </div>
+  </aside>
+
+  <!-- CONTENU : VALIDATION -->
+  <main class="main-content">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">⚖️ Espace Référente Impact — Sofia Berthelot (US-12)</h2>
+        <span class="badge-tag" style="background:#ccfbf1; color:#0f766e; padding:4px 10px; border-radius:999px; font-weight:700; font-size:0.8rem;">
+          Sofia (Contrôle des données)
+        </span>
+      </div>
+      <p style="color:var(--neutral-mid); font-size:0.88rem; margin-bottom:16px;">
+        Contrôlez les sacs et photos déclarés par les bénévoles.
+        <br><strong>Effet magique :</strong> Valider une récolte met à jour les KPIs officiels et transforme instantanément la zone en <strong>VERT (Propre)</strong> sur la carte de Brest !
+      </p>
+
+      <div id="validation-list-container"></div>
+    </div>
+  </main>
+
+  <div class="modal-overlay" id="modal-scrum-board">
+    <div class="modal-container" style="max-width: 860px;">
+      <div class="modal-header" style="background:#0f172a; color:white;">
+        <h3 class="modal-title" style="color:white;">📋 Dossier de Gestion de Projet Scrum — TP RIC / Océanik</h3>
+        <button class="modal-close-btn" style="color:white;">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:#f8fafc; padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); margin-bottom:16px;">
+          <h4 style="font-size:0.95rem; margin-bottom:6px; color:#0f172a;">👥 Organisation de l'Équipe Scrum (TD1 / TP)</h4>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:8px; font-size:0.82rem;">
+            <div><strong>Product Owner :</strong> Allan Steed</div>
+            <div><strong>Scrum Master :</strong> Mathis</div>
+            <div><strong>Développeurs :</strong> Tim, Jules-Yann, Simon-Noël</div>
+          </div>
+        </div>
+
+        <h4 style="margin-bottom:10px;">🏃‍♂️ Découpage du Sprint 3 (49 points cumulés)</h4>
+        <div class="scrum-board-summary">
+          <div class="sprint-summary-card">
+            <h4>Sprint 3 : Récolte, Sofia & Carte au vert</h4>
+            <div style="font-size:0.75rem; color:#0284c7; font-weight:700; margin-bottom:4px;">15 pts • Cœur MVP</div>
+            <ul>
+              <li><span class="us-pill-tag">US-11</span> Déclarer récolte (sacs étalons)</li>
+              <li><span class="us-pill-tag">US-12</span> Espace validation de Sofia</li>
+              <li><span class="us-pill-tag">US-13</span> Signaler zone polluée</li>
+              <li><span class="us-pill-tag">BOUCLE</span> Zone passe au VERT sur carte !</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal-cancel-btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <!-- SCRIPTS -->
+  <script src="js/data.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/sprint.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

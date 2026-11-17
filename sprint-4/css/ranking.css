@@ -1,0 +1,27 @@
+/* css/ranking.css - Classement responsable, organisations RSE et guides de sécurité (US-17, 18, 19) */
+
+.guide-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.guide-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.guide-card-header {
+  padding: 16px;
+  background: #0f172a;
+  color: white;
+}
+
+.guide-card-body {
+  padding: 16px;
+  font-size: 0.85rem;
+  color: var(--neutral-mid);
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIC — Sprint 3 : Missions | Océanik Brest</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- BARRE AGILE TP SPRINT 3 -->
+  <header class="tp-control-bar">
+    <div class="tp-control-group">
+      <span class="tp-badge-tag" style="background:#38bdf8; color:#0f172a;">Sprint 3</span>
+      <strong>RIC / Océanik</strong>
+      <span style="opacity: 0.85;">| <strong>Incrément Sprint 3</strong> (15 pts) • Allan (PO) • Mathis (SM) • Tim, Jules-Yann, Simon-Noël (Dev)</span>
+    </div>
+
+    <div class="tp-control-group">
+      <label for="persona-select" style="font-size: 0.75rem; font-weight: 600;">Persona :</label>
+      <select id="persona-select" class="persona-select">
+        <option value="marc" selected>Marc Le Goff (Organisateur bénévole - P2)</option>
+        <option value="lea">Léa Morvan (Citoyenne engagée - P1)</option>
+        <option value="sofia">Sofia Berthelot (Référente Impact - P2)</option>
+        <option value="visiteur">Visiteur Anonyme</option>
+      </select>
+
+      <button class="tp-action-btn" id="open-scrum-board-btn">📋 Dossier Scrum TP</button>
+      <button class="tp-action-btn" id="reset-data-btn">🔄 Réinitialiser</button>
+    </div>
+  </header>
+
+  <!-- NAVIGATION SPRINT 3 -->
+  <header class="app-header">
+    <a href="index.html" class="brand">
+      <img src="logo.png" alt="Logo RIC Océanik" class="brand-logo-img">
+      <div class="brand-text">
+        <h1>RIC <span>• Océanik</span></h1>
+        <p class="brand-tagline">Rade Impact Collectif — Préservons ensemble le littoral brestois</p>
+      </div>
+    </a>
+
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link" id="nav-map">🗺️ Carte & Littoral</a>
+      <a href="missions.html" class="nav-link active" id="nav-missions">📅 Missions</a>
+      <a href="validation.html" class="nav-link" id="nav-validation">⚖️ Validation Impact <span class="badge-counter" id="validation-pending-count">1</span></a>
+    </nav>
+
+    <div id="user-header-status"></div>
+  </header>
+
+  <!-- BANNER SPRINT 3 -->
+  <aside class="sprint-scope-banner" id="sprint-banner">
+    <div>
+      <strong id="sprint-banner-title">Sprint 3 — Missions de terrain</strong>
+      <span id="sprint-banner-desc" style="margin-left: 10px; opacity: 0.9;">Rejoignez ou organisez des ramassages de déchets sur la Rade de Brest.</span>
+    </div>
+    <div class="tp-badge-tag" id="sprint-banner-badge" style="background:#0284c7; color:#fff;">
+      Incrément Sprint 3 Livré
+    </div>
+  </aside>
+
+  <!-- CONTENU : MISSIONS -->
+  <main class="main-content">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">📅 Missions de ramassage en Rade de Brest</h2>
+        <button class="btn btn-primary" id="open-create-mission-btn">➕ Proposer une mission (Marc)</button>
+      </div>
+
+      <div class="filter-bar">
+        <input type="text" id="filter-search" class="filter-input" placeholder="🔍 Rechercher une mission..." style="flex: 1; min-width: 200px;">
+        <select id="filter-zone" class="filter-input">
+          <option value="all">Toutes les zones</option>
+          <option value="Moulin Blanc">Moulin Blanc (Brest)</option>
+          <option value="Plage du Minou">Plage du Minou (Plouzané)</option>
+          <option value="Pen-ar-Vir">Pen-ar-Vir (Plougastel)</option>
+          <option value="Port de Commerce">Port de Commerce</option>
+          <option value="Blancs Sablons">Blancs Sablons</option>
+        </select>
+        <select id="filter-type" class="filter-input">
+          <option value="all">Tous types d'action</option>
+          <option value="Nettoyage estran">Nettoyage estran</option>
+          <option value="Dépollution plastique">Dépollution plastique</option>
+          <option value="Action scolaire & RSE">Action scolaire & RSE</option>
+        </select>
+      </div>
+
+      <div class="missions-grid" id="missions-container"></div>
+    </div>
+  </main>
+
+  <!-- MODALES -->
+  <div class="modal-overlay" id="modal-create-mission">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">➕ Organiser une mission (Marc)</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="form-create-mission">
+          <div class="form-group">
+            <label class="form-label" for="mission-title">Titre *</label>
+            <input type="text" id="mission-title" class="form-control" required>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="mission-zone">Secteur *</label>
+              <select id="mission-zone" class="form-control" required>
+                <option value="Moulin Blanc">Moulin Blanc</option>
+                <option value="Plage du Minou">Plage du Minou</option>
+                <option value="Pen-ar-Vir">Pen-ar-Vir</option>
+                <option value="Port de Commerce">Port de Commerce</option>
+                <option value="Blancs Sablons">Blancs Sablons</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="mission-date">Date *</label>
+              <input type="date" id="mission-date" class="form-control" value="2026-11-22" required>
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="mission-time">Heure & Durée *</label>
+              <input type="text" id="mission-time" class="form-control" value="14h00 - 16h30" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="mission-capacity">Places max *</label>
+              <input type="number" id="mission-capacity" class="form-control" value="20" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="mission-security">Sécurité & Consignes *</label>
+            <textarea id="mission-security" class="form-control" rows="2" required>Bottes obligatoires, gants fournis.</textarea>
+          </div>
+          <div class="modal-footer" style="padding-left:0; padding-right:0;">
+            <button type="button" class="btn btn-secondary modal-cancel-btn">Annuler</button>
+            <button type="submit" class="btn btn-primary">Publier</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-participants-list">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="participants-modal-title">👥 Inscrits</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body" id="participants-modal-content"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal-cancel-btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-scrum-board">
+    <div class="modal-container" style="max-width: 860px;">
+      <div class="modal-header" style="background:#0f172a; color:white;">
+        <h3 class="modal-title" style="color:white;">📋 Dossier de Gestion de Projet Scrum — TP RIC / Océanik</h3>
+        <button class="modal-close-btn" style="color:white;">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:#f8fafc; padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); margin-bottom:16px;">
+          <h4 style="font-size:0.95rem; margin-bottom:6px; color:#0f172a;">👥 Organisation de l'Équipe Scrum (TD1 / TP)</h4>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:8px; font-size:0.82rem;">
+            <div><strong>Product Owner :</strong> Allan Steed</div>
+            <div><strong>Scrum Master :</strong> Mathis</div>
+            <div><strong>Développeurs :</strong> Tim, Jules-Yann, Simon-Noël</div>
+          </div>
+        </div>
+
+        <h4 style="margin-bottom:10px;">🏃‍♂️ Découpage du Sprint 3 (49 points cumulés)</h4>
+        <div class="scrum-board-summary">
+          <div class="sprint-summary-card">
+            <h4>Sprint 3 : Récolte, Sofia & Carte au vert</h4>
+            <div style="font-size:0.75rem; color:#0284c7; font-weight:700; margin-bottom:4px;">15 pts • Cœur MVP</div>
+            <ul>
+              <li><span class="us-pill-tag">US-11</span> Déclarer récolte (sacs étalons)</li>
+              <li><span class="us-pill-tag">US-12</span> Espace validation de Sofia</li>
+              <li><span class="us-pill-tag">US-13</span> Signaler zone polluée</li>
+              <li><span class="us-pill-tag">BOUCLE</span> Zone passe au VERT sur carte !</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal-cancel-btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <!-- SCRIPTS -->
+  <script src="js/data.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/missions.js"></script>
+  <script src="js/sprint.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

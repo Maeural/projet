@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIC — Classement Responsable & Collectifs RSE | Océanik Brest</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- BARRE AGILE TP SPRINT 4 (MVP FINAL) -->
+  <header class="tp-control-bar">
+    <div class="tp-control-group">
+      <span class="tp-badge-tag" style="background:#38bdf8; color:#0f172a;">Sprint 4</span>
+      <strong>RIC / Océanik</strong>
+      <span style="opacity: 0.85;">| <strong>Incrément Sprint 4 — MVP Final</strong> (72 pts) • Allan (PO) • Mathis (SM) • Tim, Jules-Yann, Simon-Noël (Dev)</span>
+    </div>
+
+    <!-- PERSONA SWITCHER & OUTILS SCRUM -->
+    <div class="tp-control-group">
+      <label for="persona-select" style="font-size: 0.75rem; font-weight: 600;">Persona :</label>
+      <select id="persona-select" class="persona-select">
+        <option value="camille" selected>Camille Roussel (Responsable RSE - P3)</option>
+        <option value="kerneis">Yann Kernéis (Enseignant - P3)</option>
+        <option value="lea">Léa Morvan (Citoyenne engagée - P1)</option>
+        <option value="marc">Marc Le Goff (Organisateur bénévole - P2)</option>
+        <option value="sofia">Sofia Berthelot (Référente Impact - P2)</option>
+        <option value="visiteur">Visiteur Anonyme</option>
+      </select>
+
+      <button class="tp-action-btn" id="open-scrum-board-btn">📋 Dossier Scrum TP</button>
+      <button class="tp-action-btn" id="reset-data-btn">🔄 Réinitialiser</button>
+    </div>
+  </header>
+
+  <!-- NAVIGATION PRINCIPALE -->
+  <header class="app-header">
+    <a href="index.html" class="brand">
+      <img src="logo.png" alt="Logo RIC Océanik" class="brand-logo-img">
+      <div class="brand-text">
+        <h1>RIC <span>• Océanik</span></h1>
+        <p class="brand-tagline">Rade Impact Collectif — Préservons ensemble le littoral brestois</p>
+      </div>
+    </a>
+
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link" id="nav-map">
+        🗺️ Carte & Littoral
+      </a>
+      <a href="missions.html" class="nav-link sprint-feature sprint-2-plus" id="nav-missions">
+        📅 Missions
+      </a>
+      <a href="validation.html" class="nav-link sprint-feature sprint-3-plus" id="nav-validation">
+        ⚖️ Validation Impact <span class="badge-counter" id="validation-pending-count">1</span>
+      </a>
+      <a href="profil.html" class="nav-link sprint-feature sprint-4-plus" id="nav-profile">
+        👤 Mon Impact & Badges
+      </a>
+      <a href="classement.html" class="nav-link active sprint-feature sprint-4-plus" id="nav-ranking">
+        🏆 Classement & RSE
+      </a>
+      <a href="guides.html" class="nav-link sprint-feature sprint-4-plus" id="nav-guides">
+        💡 Conseils & Sécurité
+      </a>
+    </nav>
+
+    <div id="user-header-status"></div>
+  </header>
+
+  <!-- BANNER SPRINT ACTIF -->
+  <aside class="sprint-scope-banner" id="sprint-banner">
+    <div>
+      <strong id="sprint-banner-title">Sprint 4 — Classement & Engagement des Collectifs (US-17, 18)</strong>
+      <span id="sprint-banner-desc" style="margin-left: 10px; opacity: 0.9;">Mobilisation des entreprises brestoises, écoles et associations autour de la préservation de la rade.</span>
+    </div>
+    <div id="sprint-banner-badge" class="tp-badge-tag" style="background:#0284c7; color:#fff;">
+      Incrément Scrum validé
+    </div>
+  </aside>
+
+  <!-- CONTENU : CLASSEMENT RESPONSABLE & COLLECTIFS RSE -->
+  <main class="main-content">
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title">🏆 Classement Responsable des Collectifs (US-17)</h2>
+          <p style="font-size:0.82rem; color:var(--neutral-mid); margin-top:2px;">
+            Score composite valorisant le nombre d'actions, la mobilisation et le volume validé (sans inciter à la sur-déclaration).
+          </p>
+        </div>
+      </div>
+
+      <!-- TABLEAU CLASSEMENT -->
+      <div style="overflow-x:auto;">
+        <table style="width:100%; border-collapse:collapse; font-size:0.88rem;">
+          <thead>
+            <tr style="background:#f8fafc; border-bottom:2px solid var(--border); text-align:left;">
+              <th style="padding:10px;">Rang</th>
+              <th style="padding:10px;">Organisation / Collectif</th>
+              <th style="padding:10px;">Catégorie</th>
+              <th style="padding:10px; text-align:center;">Missions</th>
+              <th style="padding:10px; text-align:center;">Participants</th>
+              <th style="padding:10px; text-align:right;">Volume validé</th>
+              <th style="padding:10px; text-align:right;">Score d'impact</th>
+            </tr>
+          </thead>
+          <tbody id="ranking-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PROFIL ORGANISATION / DÉFI RSE (US-18) -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">🏢 Défi RSE & Scolaire : Espace Collectif (US-18)</h3>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px;" id="orgs-list-container"></div>
+    </div>
+  </main>
+
+  <!-- MODAL DOSSIER SCRUM TP -->
+  <div class="modal-overlay" id="modal-scrum-board">
+    <div class="modal-container" style="max-width: 860px;">
+      <div class="modal-header" style="background:#0f172a; color:white;">
+        <h3 class="modal-title" style="color:white;">📋 Dossier de Gestion de Projet Scrum — TP RIC / Océanik</h3>
+        <button class="modal-close-btn" style="color:white;">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:#f8fafc; padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); margin-bottom:16px;">
+          <h4 style="font-size:0.95rem; margin-bottom:6px; color:#0f172a;">👥 Organisation de l'Équipe Scrum (TD1 / TP)</h4>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:8px; font-size:0.82rem;">
+            <div><strong>Product Owner :</strong> Allan Steed</div>
+            <div><strong>Scrum Master :</strong> Mathis</div>
+            <div><strong>Développeurs :</strong> Tim, Jules-Yann, Simon-Noël</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal-cancel-btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <!-- SCRIPTS JS -->
+  <script src="js/data.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/missions.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/ranking.js"></script>
+  <script src="js/sprint.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+/* css/main.css - Fichier maître assemblant tous les modules CSS */
+@import "variables.css";
+@import "base.css";
+@import "header.css";
+@import "map.css";
+@import "missions.css";
+@import "validation.css";
+@import "profile.css";
+@import "ranking.css";
+@import "modals.css";

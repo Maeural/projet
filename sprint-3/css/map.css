@@ -1,0 +1,277 @@
+/* css/map.css - Indicateurs d'impact, carte Leaflet & vectorielle, et volet de détail (US-01, 02, 03) */
+
+/* Grille d'impact global (US-03) */
+.impact-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-box {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-box::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+}
+
+.stat-box.primary::after {
+  background: var(--primary);
+}
+
+.stat-box.success::after {
+  background: var(--success);
+}
+
+.stat-box.secondary::after {
+  background: var(--secondary);
+}
+
+.stat-box.warning::after {
+  background: var(--accent);
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.stat-box.primary .stat-icon {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.stat-box.success .stat-icon {
+  background: #dcfce7;
+  color: var(--success);
+}
+
+.stat-box.secondary .stat-icon {
+  background: var(--secondary-light);
+  color: var(--secondary);
+}
+
+.stat-box.warning .stat-icon {
+  background: #fef3c7;
+  color: var(--accent);
+}
+
+.stat-details h4 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--neutral-mid);
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.stat-number {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--neutral-dark);
+  line-height: 1.1;
+}
+
+.stat-subtext {
+  font-size: 0.72rem;
+  color: #64748b;
+  margin-top: 3px;
+}
+
+.stat-subtext span.valid {
+  color: var(--success);
+  font-weight: 600;
+}
+
+.stat-subtext span.pending {
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+/* Layout Carte et Volet latéral (US-01, US-02) */
+.map-view-container {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 20px;
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .map-view-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.map-card-wrapper {
+  background: white;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-toolbar {
+  padding: 12px 16px;
+  background: #f8fafc;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.map-legend {
+  display: flex;
+  gap: 12px;
+  font-size: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-clean {
+  background: #10b981;
+}
+
+.dot-watch {
+  background: #f59e0b;
+}
+
+.dot-dirty {
+  background: #ef4444;
+}
+
+.dot-urgent {
+  background: #991b1b;
+}
+
+.dot-unknown {
+  background: #94a3b8;
+}
+
+#rade-map {
+  height: 520px;
+  width: 100%;
+  min-height: 520px;
+  background: #e2e8f0;
+  z-index: 1;
+}
+
+.map-disclaimer {
+  font-size: 0.72rem;
+  color: #64748b;
+  padding: 8px 16px;
+  background: #f1f5f9;
+  border-top: 1px solid var(--border);
+  font-style: italic;
+}
+
+/* Volet de détail d'une zone (US-02) */
+.zone-detail-panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 560px;
+}
+
+.zone-badge-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.status-clean {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-watch {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.status-dirty {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.status-urgent {
+  background: #fecaca;
+  color: #7f1d1d;
+}
+
+.status-unknown {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.zone-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 16px 0;
+  background: #f8fafc;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+}
+
+.zone-meta-item small {
+  display: block;
+  font-size: 0.7rem;
+  color: #64748b;
+}
+
+.zone-meta-item strong {
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+
+.zone-actions-list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

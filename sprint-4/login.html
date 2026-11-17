@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIC — Connexion & Authentification | Sprint 4 MVP Océanik</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- BARRE AGILE TP SPRINT 4 (MVP FINAL) -->
+  <header class="tp-control-bar">
+    <div class="tp-control-group">
+      <span class="tp-badge-tag" style="background:#38bdf8; color:#0f172a;">Sprint 4</span>
+      <strong>RIC / Océanik</strong>
+      <span style="opacity: 0.85;">| <strong>Incrément Sprint 4 — MVP Final</strong> (72 pts) • Allan (PO) • Mathis (SM) • Tim, Jules-Yann, Simon-Noël (Dev)</span>
+    </div>
+
+    <!-- PERSONA SWITCHER & OUTILS SCRUM -->
+    <div class="tp-control-group">
+      <label for="persona-select" style="font-size: 0.75rem; font-weight: 600;">Persona :</label>
+      <select id="persona-select" class="persona-select">
+        <option value="lea" selected>Léa Morvan (Citoyenne engagée - P1)</option>
+        <option value="marc">Marc Le Goff (Organisateur bénévole - P2)</option>
+        <option value="sofia">Sofia Berthelot (Référente Impact - P2)</option>
+        <option value="camille">Camille Roussel (Responsable RSE - P3)</option>
+        <option value="kerneis">Yann Kernéis (Enseignant - P3)</option>
+        <option value="visiteur">Visiteur Anonyme</option>
+      </select>
+
+      <button class="tp-action-btn" id="open-scrum-board-btn" title="Consulter la capitalisation agile complète">
+        📋 Dossier Scrum TP
+      </button>
+
+      <button class="tp-action-btn" id="reset-data-btn" title="Réinitialiser toutes les données">
+        🔄 Réinitialiser
+      </button>
+    </div>
+  </header>
+
+  <!-- NAVIGATION SPRINT 4 -->
+  <header class="app-header">
+    <a href="index.html" class="brand">
+      <img src="logo.png" alt="Logo RIC Océanik" class="brand-logo-img">
+      <div class="brand-text">
+        <h1>RIC <span>• Océanik</span></h1>
+        <p class="brand-tagline">Rade Impact Collectif — Préservons ensemble le littoral brestois</p>
+      </div>
+    </a>
+
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link" id="nav-map">
+        🗺️ Carte & Littoral
+      </a>
+      <a href="missions.html" class="nav-link sprint-feature sprint-2-plus" id="nav-missions">
+        📅 Missions
+      </a>
+      <a href="validation.html" class="nav-link sprint-feature sprint-3-plus" id="nav-validation">
+        ⚖️ Validation Impact <span class="badge-counter" id="validation-pending-count">1</span>
+      </a>
+      <a href="profil.html" class="nav-link sprint-feature sprint-4-plus" id="nav-profile">
+        👤 Mon Impact & Badges
+      </a>
+      <a href="classement.html" class="nav-link sprint-feature sprint-4-plus" id="nav-ranking">
+        🏆 Classement & RSE
+      </a>
+      <a href="guides.html" class="nav-link sprint-feature sprint-4-plus" id="nav-guides">
+        💡 Conseils & Sécurité
+      </a>
+    </nav>
+
+    <div id="user-header-status"></div>
+  </header>
+
+  <!-- BANNER SPRINT 4 -->
+  <aside class="sprint-scope-banner" id="sprint-banner">
+    <div>
+      <strong id="sprint-banner-title">Sprint 4 — MVP Complet : Valorisation, Fédérer & Clôture</strong>
+      <span id="sprint-banner-desc" style="margin-left: 10px; opacity: 0.9;">Toutes les fonctionnalités des US-01 à US-19 sont déployées.</span>
+    </div>
+    <div id="sprint-banner-badge" class="tp-badge-tag" style="background:#0284c7; color:#fff;">
+      Incrément Scrum validé
+    </div>
+  </aside>
+
+  <!-- CONTENU PRINCIPAL : AUTHENTIFICATION -->
+  <main class="main-content">
+    <div class="auth-wrapper">
+      <div class="auth-card">
+
+        <div class="auth-header">
+          <img src="logo.png" alt="Logo RIC Océanik" class="auth-header-logo">
+          <h2>Portail d'Authentification RIC</h2>
+          <p>Plateforme citoyenne et collaborative pour la préservation de la Rade de Brest.</p>
+        </div>
+
+        <!-- ÉTAT CONNECTÉ SI DÉJÀ AUTHENTIFIÉ -->
+        <div id="current-user-box" class="logged-in-box" style="display:none;">
+          <div style="font-size:1.8rem; margin-bottom:4px;" id="current-avatar">🌱</div>
+          <h3 style="font-size:1.1rem; color:#0f172a; margin-bottom:4px;" id="current-name">Léa Morvan</h3>
+          <p style="font-size:0.82rem; color:#64748b; margin-bottom:12px;" id="current-role">Citoyenne engagée (P1)</p>
+          <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+            <a href="index.html" class="btn btn-primary btn-sm">🗺️ Accéder à la carte</a>
+            <a href="profil.html" class="btn btn-secondary btn-sm">👤 Mon Profil & Badges</a>
+            <button type="button" class="btn btn-danger btn-sm" onclick="logout()">🚪 Déconnexion</button>
+          </div>
+        </div>
+
+        <!-- ONGLETS CONNEXION / INSCRIPTION -->
+        <div class="auth-tabs" id="auth-tabs">
+          <button type="button" class="auth-tab-btn active" id="tab-login" onclick="switchAuthTab('login')">
+            🔑 Se connecter
+          </button>
+          <button type="button" class="auth-tab-btn" id="tab-register" onclick="switchAuthTab('register')">
+            📝 Inscription rapide (US-07)
+          </button>
+        </div>
+
+        <!-- FORMULAIRE DE CONNEXION -->
+        <form id="form-login" onsubmit="handleLoginSubmit(event)">
+          <div class="form-group">
+            <label for="login-email">Adresse e-mail ou identifiant</label>
+            <input type="email" id="login-email" class="form-control" placeholder="nom@email.bzh" required value="lea.morvan@email.bzh">
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Mot de passe</label>
+            <input type="password" id="login-password" class="form-control" placeholder="••••••••" required value="password123">
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; font-size:0.8rem; color:#64748b;">
+            <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
+              <input type="checkbox" checked> Se souvenir de moi
+            </label>
+            <a href="#" style="color:#0284c7; text-decoration:none;" onclick="alert('Pour cette démonstration académique, cliquez sur l\'un des personas ci-dessous pour préremplir automatiquement les identifiants.'); return false;">Mot de passe oublié ?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:12px; font-weight:700;">
+            Se connecter ➜
+          </button>
+        </form>
+
+        <!-- FORMULAIRE D'INSCRIPTION RAPIDE (US-07) -->
+        <form id="form-register" style="display:none;" onsubmit="handleRegisterSubmit(event)">
+          <div class="form-group">
+            <label for="reg-name">Nom complet</label>
+            <input type="text" id="reg-name" class="form-control" placeholder="ex: Julien Kermarec" required>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-commune">Commune littorale de résidence</label>
+            <select id="reg-commune" class="form-control" required>
+              <option value="Brest">Brest</option>
+              <option value="Plouzané">Plouzané</option>
+              <option value="Plougastel-Daoulas">Plougastel-Daoulas</option>
+              <option value="Le Relecq-Kerhuon">Le Relecq-Kerhuon</option>
+              <option value="Crozon">Crozon</option>
+              <option value="Lanvéoc">Lanvéoc</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-email">Adresse e-mail</label>
+            <input type="email" id="reg-email" class="form-control" placeholder="nom@exemple.bzh" required>
+          </div>
+
+          <div class="form-group">
+            <label for="reg-password">Créer un mot de passe</label>
+            <input type="password" id="reg-password" class="form-control" placeholder="6 caractères minimum" minlength="6" required value="monmotdepasse">
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:12px; font-weight:700;">
+            Créer mon compte citoyen (US-07) ➜
+          </button>
+        </form>
+
+        <!-- DÉMONSTRATION AGILE SPRINT 4 (TOUS LES PERSONAS) -->
+        <div class="persona-shortcuts">
+          <div class="persona-shortcuts-title">
+            <span>💡 Démonstration Scrum — Personas du Projet</span>
+            <span style="font-size:0.7rem; color:#0284c7; text-transform:none; font-weight:600;">1 clic pour tester</span>
+          </div>
+
+          <div class="persona-shortcut-grid">
+            <div class="persona-shortcut-card" onclick="quickLoginPersona('lea')">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="width:32px; height:32px; border-radius:50%; background:#0284c7; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">L</span>
+                <div>
+                  <div style="font-size:0.85rem; font-weight:700; color:#0f172a;">Léa Morvan</div>
+                  <div style="font-size:0.75rem; color:#64748b;">Citoyenne engagée (P1) • Profil, badges & récoltes</div>
+                </div>
+              </div>
+              <span class="tp-badge-tag" style="background:#e0f2fe; color:#0369a1;">P1</span>
+            </div>
+
+            <div class="persona-shortcut-card" onclick="quickLoginPersona('marc')">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="width:32px; height:32px; border-radius:50%; background:#0d9488; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">M</span>
+                <div>
+                  <div style="font-size:0.85rem; font-weight:700; color:#0f172a;">Marc Le Goff</div>
+                  <div style="font-size:0.75rem; color:#64748b;">Organisateur bénévole (P2) • Créateur de chantiers</div>
+                </div>
+              </div>
+              <span class="tp-badge-tag" style="background:#ccfbf1; color:#0f766e;">P2</span>
+            </div>
+
+            <div class="persona-shortcut-card" onclick="quickLoginPersona('sofia')">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="width:32px; height:32px; border-radius:50%; background:#d97706; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">S</span>
+                <div>
+                  <div style="font-size:0.85rem; font-weight:700; color:#0f172a;">Sofia Berthelot</div>
+                  <div style="font-size:0.75rem; color:#64748b;">Référente scientifique (P2) • Validation des pesées</div>
+                </div>
+              </div>
+              <span class="tp-badge-tag" style="background:#fef3c7; color:#b45309;">P2</span>
+            </div>
+
+            <div class="persona-shortcut-card" onclick="quickLoginPersona('camille')">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="width:32px; height:32px; border-radius:50%; background:#7c3aed; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">C</span>
+                <div>
+                  <div style="font-size:0.85rem; font-weight:700; color:#0f172a;">Camille Roussel</div>
+                  <div style="font-size:0.75rem; color:#64748b;">Responsable RSE (P3) • Challenge entreprises & mécénat</div>
+                </div>
+              </div>
+              <span class="tp-badge-tag" style="background:#ede9fe; color:#6d28d9;">P3</span>
+            </div>
+
+            <div class="persona-shortcut-card" onclick="quickLoginPersona('kerneis')">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="width:32px; height:32px; border-radius:50%; background:#059669; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">Y</span>
+                <div>
+                  <div style="font-size:0.85rem; font-weight:700; color:#0f172a;">Yann Kernéis</div>
+                  <div style="font-size:0.75rem; color:#64748b;">Enseignant (P3) • Sorties scolaires & fiches de sensibilisation</div>
+                </div>
+              </div>
+              <span class="tp-badge-tag" style="background:#d1fae5; color:#047857;">P3</span>
+            </div>
+
+            <div class="persona-shortcut-card" onclick="logout()">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span style="width:32px; height:32px; border-radius:50%; background:#94a3b8; color:white; display:flex; align-items:center; justify-content:center; font-weight:700;">?</span>
+                <div>
+                  <div style="font-size:0.85rem; font-weight:700; color:#0f172a;">Visiteur Anonyme</div>
+                  <div style="font-size:0.75rem; color:#64748b;">Naviguer sans authentification (Accès libre carte & fiches)</div>
+                </div>
+              </div>
+              <span class="tp-badge-tag" style="background:#f1f5f9; color:#475569;">Déconnexion</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- MODAL DOSSIER SCRUM TP -->
+  <div class="modal-overlay" id="modal-scrum-board">
+    <div class="modal-container" style="max-width: 860px;">
+      <div class="modal-header" style="background:#0f172a; color:white;">
+        <h3 class="modal-title" style="color:white;">📋 Dossier de Gestion de Projet Scrum — TP RIC / Océanik</h3>
+        <button class="modal-close-btn" style="color:white;">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h4 style="margin-bottom:10px;">🏃‍♂️ Découpage des 4 Sprints (72 points au total)</h4>
+        <div class="sprint-summary-card">
+          <h4>Sprint 4 : Clôture & Valorisation</h4>
+          <div style="font-size:0.75rem; color:#0284c7; font-weight:700; margin-bottom:4px;">23 pts • MVP Final</div>
+          <ul>
+            <li><span class="us-pill-tag">US-16</span> Système de 5 badges & médailles</li>
+            <li><span class="us-pill-tag">US-17</span> Classement citoyen & entreprises RSE</li>
+            <li><span class="us-pill-tag">US-18</span> Espace profil & historique</li>
+            <li><span class="us-pill-tag">US-19</span> Fiches de sensibilisation du littoral</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal-cancel-btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <!-- SCRIPTS JS -->
+  <script src="js/data.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/sprint.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      setPersona(appState.currentPersona || 'lea');
+      updateAuthUI();
+
+      document.getElementById('persona-select')?.addEventListener('change', (e) => {
+        setPersona(e.target.value);
+        updateAuthUI();
+      });
+
+      document.getElementById('open-scrum-board-btn')?.addEventListener('click', () => {
+        document.getElementById('modal-scrum-board')?.classList.add('open');
+      });
+
+      document.querySelectorAll('.modal-close-btn, .modal-cancel-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('open'));
+        });
+      });
+
+      document.getElementById('reset-data-btn')?.addEventListener('click', () => {
+        if (confirm("Réinitialiser toutes les données aux valeurs de démonstration ?")) {
+          localStorage.removeItem('ric_oceanik_sprint_4');
+          location.reload();
+        }
+      });
+    });
+
+    function switchAuthTab(tab) {
+      document.getElementById('tab-login').classList.toggle('active', tab === 'login');
+      document.getElementById('tab-register').classList.toggle('active', tab === 'register');
+      document.getElementById('form-login').style.display = tab === 'login' ? 'block' : 'none';
+      document.getElementById('form-register').style.display = tab === 'register' ? 'block' : 'none';
+    }
+
+    function updateAuthUI() {
+      const isLogged = appState.currentPersona && appState.currentPersona !== 'visiteur';
+      const userBox = document.getElementById('current-user-box');
+      if (userBox) {
+        if (isLogged) {
+          const p = appState.personas[appState.currentPersona];
+          document.getElementById('current-avatar').textContent = p.avatar;
+          document.getElementById('current-name').textContent = p.name;
+          document.getElementById('current-role').textContent = p.role;
+          userBox.style.display = 'block';
+        } else {
+          userBox.style.display = 'none';
+        }
+      }
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('login-email').value.trim().toLowerCase();
+      
+      let foundId = 'lea';
+      for (const [id, persona] of Object.entries(appState.personas)) {
+        if (persona.email && persona.email.toLowerCase() === email) {
+          foundId = id;
+          break;
+        }
+      }
+
+      setPersona(foundId);
+      updateAuthUI();
+      showToast(`Connexion réussie ! Bienvenue ${appState.personas[foundId].name}`, 'success');
+
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1000);
+    }
+
+    function handleRegisterSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('reg-name').value.trim();
+      const commune = document.getElementById('reg-commune').value;
+      const email = document.getElementById('reg-email').value.trim();
+
+      appState.personas.lea.name = name;
+      appState.personas.lea.email = email;
+      appState.personas.lea.subtitle = `Citoyenne engagée • ${commune}`;
+      setPersona('lea');
+      saveState();
+
+      showToast(`Compte créé avec succès pour ${name} ! (US-07 validée)`, 'success');
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1000);
+    }
+
+    function quickLoginPersona(id) {
+      const p = appState.personas[id];
+      if (p) {
+        document.getElementById('login-email').value = p.email || '';
+        document.getElementById('login-password').value = 'password123';
+        setPersona(id);
+        updateAuthUI();
+        showToast(`Connecté en tant que ${p.name}`, 'success');
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 900);
+      }
+    }
+
+    function logout() {
+      setPersona('visiteur');
+      updateAuthUI();
+      showToast("Vous êtes maintenant déconnecté (Mode Visiteur).", "info");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+/* css/header.css - Barre de contrôle agile TP, en-tête et navigation */
+
+/* Barre de démo Agile Scrum (Sprints & Personas) */
+.tp-control-bar {
+  background: linear-gradient(90deg, #0f172a 0%, #1e293b 100%);
+  color: #fff;
+  padding: 8px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.82rem;
+  border-bottom: 2px solid #38bdf8;
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  box-shadow: var(--shadow-md);
+}
+
+.tp-control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tp-badge-tag {
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sprint-selector {
+  display: flex;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 3px;
+  border-radius: var(--radius-full);
+}
+
+.sprint-btn {
+  background: transparent;
+  color: #94a3b8;
+  border: none;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.sprint-btn:hover {
+  color: #ffffff;
+}
+
+.sprint-btn.active {
+  background: #0284c7;
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.persona-select {
+  background: #334155;
+  color: #f8fafc;
+  border: 1px solid #475569;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.persona-select:focus {
+  outline: none;
+  border-color: #38bdf8;
+}
+
+.tp-action-btn {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tp-action-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* En-tête principal de l'application */
+.app-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-logo-img {
+  height: 42px;
+  width: auto;
+  max-width: 48px;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #0284c7 0%, #0d9488 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 6px rgba(2, 132, 199, 0.25);
+}
+
+.brand-text h1 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand-tagline {
+  font-size: 0.75rem;
+  color: var(--neutral-mid);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-link {
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: var(--neutral-mid);
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+.nav-link:hover {
+  color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+.nav-link.active {
+  color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+.badge-counter {
+  background: #f59e0b;
+  color: #ffffff;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  padding: 1px 6px;
+  font-weight: 700;
+}
+
+.user-status-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--neutral-light);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.user-avatar-badge {
+  width: 24px;
+  height: 24px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+}
+
+/* Bannière de cadrage du Sprint */
+.sprint-scope-banner {
+  background: #eff6ff;
+  border-left: 4px solid var(--primary);
+  padding: 10px 20px;
+  font-size: 0.82rem;
+  color: #1e40af;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sprint-scope-banner strong {
+  color: #1d4ed8;
+}

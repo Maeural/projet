@@ -1,0 +1,8 @@
+/* sprint-3/css/main.css - Styles exclusifs au Sprint 3 (Récolte, Sofia & Carte au vert) */
+@import "variables.css";
+@import "base.css";
+@import "header.css";
+@import "map.css";
+@import "missions.css";
+@import "validation.css";
+@import "modals.css";

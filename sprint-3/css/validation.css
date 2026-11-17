@@ -1,0 +1,28 @@
+/* css/validation.css - Espace de modération et de validation de Sofia (US-12) */
+
+.validation-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .validation-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+.validation-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 0.8rem;
+  color: var(--neutral-mid);
+  margin-top: 4px;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIC — Fiches Pratiques & Sécurité Littorale | Océanik Brest</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- BARRE AGILE TP -->
+  <header class="tp-control-bar">
+    <div class="tp-control-group">
+      <span class="tp-badge-tag" style="background:#38bdf8; color:#0f172a;">Sprint 4</span>
+      <strong>RIC / Océanik</strong>
+      <span style="opacity: 0.85;">| <strong>Incrément Sprint 4 — MVP Final</strong> (72 pts) • Allan (PO) • Mathis (SM) • Tim, Jules-Yann, Simon-Noël (Dev)</span>
+    </div>
+
+    <!-- PERSONA SWITCHER & OUTILS SCRUM -->
+    <div class="tp-control-group">
+      <label for="persona-select" style="font-size: 0.75rem; font-weight: 600;">Persona :</label>
+      <select id="persona-select" class="persona-select">
+        <option value="kerneis" selected>Yann Kernéis (Enseignant - P3)</option>
+        <option value="lea">Léa Morvan (Citoyenne engagée - P1)</option>
+        <option value="marc">Marc Le Goff (Organisateur bénévole - P2)</option>
+        <option value="sofia">Sofia Berthelot (Référente Impact - P2)</option>
+        <option value="camille">Camille Roussel (Responsable RSE - P3)</option>
+        <option value="visiteur">Visiteur Anonyme</option>
+      </select>
+
+      <button class="tp-action-btn" id="open-scrum-board-btn">📋 Dossier Scrum TP</button>
+      <button class="tp-action-btn" id="reset-data-btn">🔄 Réinitialiser</button>
+    </div>
+  </header>
+
+  <!-- NAVIGATION PRINCIPALE -->
+  <header class="app-header">
+    <a href="index.html" class="brand">
+      <img src="logo.png" alt="Logo RIC Océanik" class="brand-logo-img">
+      <div class="brand-text">
+        <h1>RIC <span>• Océanik</span></h1>
+        <p class="brand-tagline">Rade Impact Collectif — Préservons ensemble le littoral brestois</p>
+      </div>
+    </a>
+
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link" id="nav-map">
+        🗺️ Carte & Littoral
+      </a>
+      <a href="missions.html" class="nav-link sprint-feature sprint-2-plus" id="nav-missions">
+        📅 Missions
+      </a>
+      <a href="validation.html" class="nav-link sprint-feature sprint-3-plus" id="nav-validation">
+        ⚖️ Validation Impact <span class="badge-counter" id="validation-pending-count">1</span>
+      </a>
+      <a href="profil.html" class="nav-link sprint-feature sprint-4-plus" id="nav-profile">
+        👤 Mon Impact & Badges
+      </a>
+      <a href="classement.html" class="nav-link sprint-feature sprint-4-plus" id="nav-ranking">
+        🏆 Classement & RSE
+      </a>
+      <a href="guides.html" class="nav-link active sprint-feature sprint-4-plus" id="nav-guides">
+        💡 Conseils & Sécurité
+      </a>
+    </nav>
+
+    <div id="user-header-status"></div>
+  </header>
+
+  <!-- BANNER SPRINT ACTIF -->
+  <aside class="sprint-scope-banner" id="sprint-banner">
+    <div>
+      <strong id="sprint-banner-title">Sprint 4 — Sensibilisation & Sécurité Littorale (US-19)</strong>
+      <span id="sprint-banner-desc" style="margin-left: 10px; opacity: 0.9;">Préparez vos sorties en sécurité : marées, préservation de la biodiversité et tri.</span>
+    </div>
+    <div id="sprint-banner-badge" class="tp-badge-tag" style="background:#0284c7; color:#fff;">
+      Incrément Scrum validé
+    </div>
+  </aside>
+
+  <!-- CONTENU : FICHES PRATIQUES & SÉCURITÉ LITTORALE -->
+  <main class="main-content">
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title">💡 Fiches Pratiques & Sécurité Littorale (US-19)</h2>
+          <p style="font-size:0.82rem; color:var(--neutral-mid); margin-top:2px;">
+            Contenus synthétiques pour bien préparer sa sortie et protéger la biodiversité de la rade de Brest.
+          </p>
+        </div>
+      </div>
+
+      <div class="guide-card-grid">
+        <div class="guide-card">
+          <div class="guide-card-header" style="background:#0284c7;">
+            <h4>🦺 1. Sécurité & Marées en Rade de Brest</h4>
+          </div>
+          <div class="guide-card-body">
+            <p>• Toujours consulter l'horaire et le coefficient de marée avant de s'engager sur l'estran (marée descendante recommandée).</p>
+            <p>• Attention aux zones vaseuses et rochers glissants (Anse de Camfrout, Le Fret).</p>
+            <p>• Port de gants épais obligatoire. Ne jamais ramasser à mains nues les seringues ou débris tranchants (les signaler).</p>
+            <p>• En cas d'urgence en mer ou sur l'estran : composez le <strong>196</strong> (CROSS).</p>
+          </div>
+        </div>
+
+        <div class="guide-card">
+          <div class="guide-card-header" style="background:#0d9488;">
+            <h4>♻️ 2. Guide du tri des déchets d'estran</h4>
+          </div>
+          <div class="guide-card-body">
+            <p>• <strong>Bouteilles & emballages plastique :</strong> À rincer sommairement et déposer dans le bac de tri jaune.</p>
+            <p>• <strong>Filets & cordages fantômes :</strong> Isoler car souvent trop dégradés pour le recyclage classique.</p>
+            <p>• <strong>Déchets dangereux / fûts / fusées de détresse :</strong> Ne pas manipuler, avertir les autorités portuaires.</p>
+          </div>
+        </div>
+
+        <div class="guide-card">
+          <div class="guide-card-header" style="background:#10b981;">
+            <h4>🦀 3. Préserver la laisse de mer et la biodiversité</h4>
+          </div>
+          <div class="guide-card-body">
+            <p>• La <em>laisse de mer</em> (algues échouées, débris naturels) est un écosystème nourricier vital : ne pas la ramasser !</p>
+            <p>• Respecter les oiseaux nicheurs sur les dunes (Gravelot à collier interrompu au printemps).</p>
+            <p>• Remettre chaque galet ou rocher retourné dans sa position initiale pour préserver la micro-faune marine.</p>
+          </div>
+        </div>
+
+        <div class="guide-card">
+          <div class="guide-card-header" style="background:#6366f1;">
+            <h4>📦 4. Estimation rapide et étalonnage des sacs</h4>
+          </div>
+          <div class="guide-card-body">
+            <p>Pour le MVP et éviter de transporter un peson sur les rochers :</p>
+            <p>• <strong>Petit sac (sac cabas 15-20L) :</strong> environ 3 kg.</p>
+            <p>• <strong>Sac standard (poubelle 50L) :</strong> environ 7 kg.</p>
+            <p>• <strong>Grand sac renforcé (100L+) :</strong> environ 15 kg.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODAL DOSSIER SCRUM TP -->
+  <div class="modal-overlay" id="modal-scrum-board">
+    <div class="modal-container" style="max-width: 860px;">
+      <div class="modal-header" style="background:#0f172a; color:white;">
+        <h3 class="modal-title" style="color:white;">📋 Dossier de Gestion de Projet Scrum — TP RIC / Océanik</h3>
+        <button class="modal-close-btn" style="color:white;">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:#f8fafc; padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); margin-bottom:16px;">
+          <h4 style="font-size:0.95rem; margin-bottom:6px; color:#0f172a;">👥 Organisation de l'Équipe Scrum (TD1 / TP)</h4>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:8px; font-size:0.82rem;">
+            <div><strong>Product Owner :</strong> Allan Steed</div>
+            <div><strong>Scrum Master :</strong> Mathis</div>
+            <div><strong>Développeurs :</strong> Tim, Jules-Yann, Simon-Noël</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal-cancel-btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <!-- SCRIPTS JS -->
+  <script src="js/data.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/missions.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/ranking.js"></script>
+  <script src="js/sprint.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

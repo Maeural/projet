@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIC — Mon Impact & Badges Citoyens | Océanik Brest</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- BARRE AGILE TP SPRINT 4 (MVP FINAL) -->
+  <header class="tp-control-bar">
+    <div class="tp-control-group">
+      <span class="tp-badge-tag" style="background:#38bdf8; color:#0f172a;">Sprint 4</span>
+      <strong>RIC / Océanik</strong>
+      <span style="opacity: 0.85;">| <strong>Incrément Sprint 4 — MVP Final</strong> (72 pts) • Allan (PO) • Mathis (SM) • Tim, Jules-Yann, Simon-Noël (Dev)</span>
+    </div>
+
+    <!-- PERSONA SWITCHER & OUTILS SCRUM -->
+    <div class="tp-control-group">
+      <label for="persona-select" style="font-size: 0.75rem; font-weight: 600;">Persona :</label>
+      <select id="persona-select" class="persona-select">
+        <option value="lea" selected>Léa Morvan (Citoyenne engagée - P1)</option>
+        <option value="marc">Marc Le Goff (Organisateur bénévole - P2)</option>
+        <option value="sofia">Sofia Berthelot (Référente Impact - P2)</option>
+        <option value="camille">Camille Roussel (Responsable RSE - P3)</option>
+        <option value="kerneis">Yann Kernéis (Enseignant - P3)</option>
+        <option value="visiteur">Visiteur Anonyme</option>
+      </select>
+
+      <button class="tp-action-btn" id="open-scrum-board-btn">📋 Dossier Scrum TP</button>
+      <button class="tp-action-btn" id="reset-data-btn">🔄 Réinitialiser</button>
+    </div>
+  </header>
+
+  <!-- NAVIGATION PRINCIPALE -->
+  <header class="app-header">
+    <a href="index.html" class="brand">
+      <img src="logo.png" alt="Logo RIC Océanik" class="brand-logo-img">
+      <div class="brand-text">
+        <h1>RIC <span>• Océanik</span></h1>
+        <p class="brand-tagline">Rade Impact Collectif — Préservons ensemble le littoral brestois</p>
+      </div>
+    </a>
+
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link" id="nav-map">
+        🗺️ Carte & Littoral
+      </a>
+      <a href="missions.html" class="nav-link sprint-feature sprint-2-plus" id="nav-missions">
+        📅 Missions
+      </a>
+      <a href="validation.html" class="nav-link sprint-feature sprint-3-plus" id="nav-validation">
+        ⚖️ Validation Impact <span class="badge-counter" id="validation-pending-count">1</span>
+      </a>
+      <a href="profil.html" class="nav-link active sprint-feature sprint-4-plus" id="nav-profile">
+        👤 Mon Impact & Badges
+      </a>
+      <a href="classement.html" class="nav-link sprint-feature sprint-4-plus" id="nav-ranking">
+        🏆 Classement & RSE
+      </a>
+      <a href="guides.html" class="nav-link sprint-feature sprint-4-plus" id="nav-guides">
+        💡 Conseils & Sécurité
+      </a>
+    </nav>
+
+    <div id="user-header-status"></div>
+  </header>
+
+  <!-- BANNER SPRINT ACTIF -->
+  <aside class="sprint-scope-banner" id="sprint-banner">
+    <div>
+      <strong id="sprint-banner-title">Sprint 4 — Valorisation & Reconnaissance citoyenne (US-14, 15, 16)</strong>
+      <span id="sprint-banner-desc" style="margin-left: 10px; opacity: 0.9;">Suivez votre impact validé, gagnez des points transparents et débloquez des médailles.</span>
+    </div>
+    <div id="sprint-banner-badge" class="tp-badge-tag" style="background:#0284c7; color:#fff;">
+      Incrément Scrum validé
+    </div>
+  </aside>
+
+  <!-- CONTENU : PROFIL & BADGES -->
+  <main class="main-content">
+    
+    <!-- CARTE D'IDENTITÉ CITOYENNE (US-14) -->
+    <div class="card" style="background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+        <div style="display:flex; gap:16px; align-items:center;">
+          <div style="width:68px; height:68px; border-radius:50%; background:#0284c7; color:white; display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:800; box-shadow:var(--shadow-md);">
+            <span id="profile-avatar-letter">L</span>
+          </div>
+          <div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <h2 style="font-size:1.4rem; font-weight:800;" id="profile-user-name">Léa Morvan</h2>
+              <span class="tp-badge-tag" style="background:#e0f2fe; color:#0369a1;" id="profile-role-tag">Citoyenne engagée</span>
+            </div>
+            <p style="color:var(--neutral-mid); font-size:0.85rem;" id="profile-subtitle">Brest • Membre active depuis 2026</p>
+          </div>
+        </div>
+
+        <div style="text-align:right;">
+          <div style="font-size:0.75rem; text-transform:uppercase; color:#64748b; font-weight:700;">Niveau d'engagement</div>
+          <div style="font-size:1.6rem; font-weight:800; color:#0284c7;" id="profile-level">Niveau 2 • Gardien de Rade</div>
+          <a href="#how-points-work" id="btn-show-points-rule" style="font-size:0.75rem; color:#0d9488; text-decoration:underline; font-weight:600;">
+            ℹ️ Comment gagner des points d'impact ?
+          </a>
+        </div>
+      </div>
+
+      <!-- STATS PERSONNELLES DE LÉA -->
+      <div class="impact-stats-grid" style="margin-top:20px; margin-bottom:0;">
+        <div class="stat-box primary">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-details">
+            <h4>Points d'impact</h4>
+            <div class="stat-number" id="profile-points">180 pts</div>
+            <div class="stat-subtext">Engagement personnel</div>
+          </div>
+        </div>
+        <div class="stat-box success">
+          <div class="stat-icon">♻️</div>
+          <div class="stat-details">
+            <h4>Déchets ramassés</h4>
+            <div class="stat-number" id="profile-kg">42 kg</div>
+            <div class="stat-subtext"><span class="valid" id="profile-kg-valid">35 kg validés</span> • <span class="pending" id="profile-kg-pending">7 kg en attente</span></div>
+          </div>
+        </div>
+        <div class="stat-box secondary">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-details">
+            <h4>Missions réalisées</h4>
+            <div class="stat-number" id="profile-missions-done">3 sorties</div>
+            <div class="stat-subtext">5h30 sur l'estran</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SHOWCASE DES BADGES VIRTUELS (US-16) -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">🏅 Médailles & Badges débloqués (US-16)</h3>
+        <span style="font-size:0.82rem; color:var(--neutral-mid);">Récompense la régularité, la fiabilité et l'esprit collectif</span>
+      </div>
+      
+      <div class="badges-showcase" id="badges-container"></div>
+    </div>
+
+    <!-- HISTORIQUE DES ACTIONS -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">📜 Historique de mes actions & Déclarations (US-14)</h3>
+        <button class="btn btn-primary btn-sm" id="profile-declare-shortcut-btn">
+          ✍️ Déclarer un nouveau ramassage
+        </button>
+      </div>
+      <div id="profile-history-list"></div>
+    </div>
+
+  </main>
+
+  <!-- MODAL RÈGLE DE CALCUL DES POINTS (US-15) -->
+  <div class="modal-overlay" id="modal-points-rules">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">⭐ Comment sont attribués les points d'impact ? (US-15)</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.88rem; color:var(--neutral-mid); margin-bottom:14px;">
+          Notre barème valorise la participation régulière, le temps passé et la coopération citoyenne :
+        </p>
+        <ul style="padding-left:20px; font-size:0.85rem; line-height:1.8; color:#334155;">
+          <li><strong>+50 points :</strong> Pour chaque participation validée à une mission collective.</li>
+          <li><strong>+20 points par heure d'engagement :</strong> Valorisation du temps bénévole sur l'estran.</li>
+          <li><strong>+2 points par kilo de déchets collectés :</strong> Plafonné pour éviter toute tentation de sur-déclaration.</li>
+          <li><strong>+30 points :</strong> Pour le rôle de référent d'équipe ou animateur bénévole.</li>
+          <li><strong>+15 points :</strong> Pour un signalement citoyen vérifié et utile sur la carte.</li>
+        </ul>
+        <div style="background:#e0f2fe; padding:10px; border-radius:var(--radius-sm); margin-top:16px; font-size:0.8rem; color:#0369a1;">
+          💡 <em>Note éthique PO : Les points d'impact ne représentent aucun gain financier, mais une reconnaissance citoyenne et territoriale.</em>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary modal-cancel-btn">J'ai compris</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DÉCLARATION RÉCOLTE (US-11) -->
+  <div class="modal-overlay" id="modal-declare-harvest">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">✍️ Déclarer un ramassage de déchets (US-11)</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="form-declare-harvest">
+          <div class="form-group">
+            <label class="form-label" for="declare-zone">Secteur nettoyé *</label>
+            <select id="declare-zone" class="form-control" required>
+              <option value="Moulin Blanc">Plage du Moulin Blanc (Brest)</option>
+              <option value="Plage du Minou">Plage du Minou (Plouzané)</option>
+              <option value="Pen-ar-Vir">Pen-ar-Vir (Plougastel)</option>
+              <option value="Port de Commerce">Port de commerce / Château</option>
+              <option value="Anse du Poulmic">Anse du Poulmic (Lanvéoc)</option>
+              <option value="Blancs Sablons">Plage des Blancs Sablons</option>
+            </select>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="declare-bags">Nombre de sacs remplis *</label>
+              <input type="number" id="declare-bags" class="form-control" min="1" max="50" value="2" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="declare-bag-size">Taille du sac étalon *</label>
+              <select id="declare-bag-size" class="form-control">
+                <option value="3">Petit sac cabas (~3 kg)</option>
+                <option value="7" selected>Sac standard 50L (~7 kg)</option>
+                <option value="15">Grand sac renforcé 100L (~15 kg)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="background:#f0fdf4; border:1px solid #bbf7d0; padding:12px; border-radius:var(--radius-sm); margin-bottom:16px;">
+            <div style="font-size:0.8rem; color:#166534; font-weight:700;">Calcul automatique du poids total estimé :</div>
+            <div style="font-size:1.3rem; font-weight:800; color:#15803d;" id="declare-weight-preview">14 kg estimés</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="declare-notes">Commentaires ou types de déchets trouvés</label>
+            <textarea id="declare-notes" class="form-control" rows="2" placeholder="Ex: Plastiques, bouts de cordages..."></textarea>
+          </div>
+
+          <div class="modal-footer" style="padding-left:0; padding-right:0;">
+            <button type="button" class="btn btn-secondary modal-cancel-btn">Annuler</button>
+            <button type="submit" class="btn btn-primary">Valider ma déclaration</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DOSSIER SCRUM TP -->
+  <div class="modal-overlay" id="modal-scrum-board">
+    <div class="modal-container" style="max-width: 860px;">
+      <div class="modal-header" style="background:#0f172a; color:white;">
+        <h3 class="modal-title" style="color:white;">📋 Dossier de Gestion de Projet Scrum — TP RIC / Océanik</h3>
+        <button class="modal-close-btn" style="color:white;">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:#f8fafc; padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); margin-bottom:16px;">
+          <h4 style="font-size:0.95rem; margin-bottom:6px; color:#0f172a;">👥 Organisation de l'Équipe Scrum (TD1 / TP)</h4>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:8px; font-size:0.82rem;">
+            <div><strong>Product Owner :</strong> Allan Steed</div>
+            <div><strong>Scrum Master :</strong> Mathis</div>
+            <div><strong>Développeurs :</strong> Tim, Jules-Yann, Simon-Noël</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal-cancel-btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <!-- SCRIPTS JS -->
+  <script src="js/data.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/missions.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/ranking.js"></script>
+  <script src="js/sprint.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

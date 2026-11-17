@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIC — Carte & Découverte du Littoral | Océanik Brest</title>
+  
+  <!-- Leaflet CSS pour la cartographie OpenStreetMap -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+  <!-- Feuilles de style modulaires dans css/ -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- BARRE AGILE TP SPRINT 4 (MVP FINAL) -->
+  <!-- ========================================== -->
+  <header class="tp-control-bar">
+    <div class="tp-control-group">
+      <span class="tp-badge-tag" style="background:#38bdf8; color:#0f172a;">Sprint 4</span>
+      <strong>RIC / Océanik</strong>
+      <span style="opacity: 0.85;">| <strong>Incrément Sprint 4 — MVP Final</strong> (72 pts) • Allan (PO) • Mathis (SM) • Tim, Jules-Yann, Simon-Noël (Dev)</span>
+    </div>
+
+    <!-- PERSONA SWITCHER & OUTILS SCRUM -->
+    <div class="tp-control-group">
+      <label for="persona-select" style="font-size: 0.75rem; font-weight: 600;">Persona actif :</label>
+      <select id="persona-select" class="persona-select">
+        <option value="lea" selected>Léa Morvan (Citoyenne engagée - P1)</option>
+        <option value="marc">Marc Le Goff (Organisateur bénévole - P2)</option>
+        <option value="sofia">Sofia Berthelot (Référente Impact - P2)</option>
+        <option value="camille">Camille Roussel (Responsable RSE - P3)</option>
+        <option value="kerneis">Yann Kernéis (Enseignant - P3)</option>
+        <option value="visiteur">Visiteur Anonyme</option>
+      </select>
+
+      <button class="tp-action-btn" id="open-scrum-board-btn" title="Consulter la capitalisation agile et le suivi des cérémonies">
+        📋 Dossier Scrum TP
+      </button>
+
+      <button class="tp-action-btn" id="reset-data-btn" title="Réinitialiser les données de démonstration">
+        🔄 Réinitialiser
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- NAVIGATION PRINCIPALE (MULTI-PAGES) -->
+  <!-- ========================================== -->
+  <header class="app-header">
+    <a href="index.html" class="brand">
+      <img src="logo.png" alt="Logo RIC Océanik" class="brand-logo-img">
+      <div class="brand-text">
+        <h1>RIC <span>• Océanik</span></h1>
+        <p class="brand-tagline">Rade Impact Collectif — Préservons ensemble le littoral brestois</p>
+      </div>
+    </a>
+
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link active" id="nav-map">
+        🗺️ Carte & Littoral
+      </a>
+      <a href="missions.html" class="nav-link sprint-feature sprint-2-plus" id="nav-missions">
+        📅 Missions
+      </a>
+      <a href="validation.html" class="nav-link sprint-feature sprint-3-plus" id="nav-validation">
+        ⚖️ Validation Impact <span class="badge-counter" id="validation-pending-count">1</span>
+      </a>
+      <a href="profil.html" class="nav-link sprint-feature sprint-4-plus" id="nav-profile">
+        👤 Mon Impact & Badges
+      </a>
+      <a href="classement.html" class="nav-link sprint-feature sprint-4-plus" id="nav-ranking">
+        🏆 Classement & RSE
+      </a>
+      <a href="guides.html" class="nav-link sprint-feature sprint-4-plus" id="nav-guides">
+        💡 Conseils & Sécurité
+      </a>
+    </nav>
+
+    <!-- STATUS UTILISATEUR CONNECTÉ -->
+    <div id="user-header-status"></div>
+  </header>
+
+  <!-- BANNER SPRINT ACTIF -->
+  <aside class="sprint-scope-banner" id="sprint-banner">
+    <div>
+      <strong id="sprint-banner-title">Sprint 4 — MVP Complet : Valorisation, Fédérer & Clôture</strong>
+      <span id="sprint-banner-desc" style="margin-left: 10px; opacity: 0.9;">Toutes les fonctionnalités des US-01 à US-19 sont déployées.</span>
+    </div>
+    <div id="sprint-banner-badge" class="tp-badge-tag" style="background:#0284c7; color:#fff;">
+      Incrément Scrum validé
+    </div>
+  </aside>
+
+  <!-- ========================================== -->
+  <!-- CONTENU : CARTE & DÉCOUVERTE DU LITTORAL -->
+  <!-- ========================================== -->
+  <main class="main-content">
+    
+    <!-- INDICATEURS D'IMPACT GLOBAL (US-03) -->
+    <div class="impact-stats-grid">
+      <div class="stat-box primary">
+        <div class="stat-icon">⚖️</div>
+        <div class="stat-details">
+          <h4>Déchets collectés (Rade)</h4>
+          <div class="stat-number" id="kpi-total-kg">1 420 kg</div>
+          <div class="stat-subtext">
+            <span class="valid" id="kpi-valid-kg">1 240 kg validés</span> • 
+            <span class="pending" id="kpi-pending-kg">180 kg déclarés</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-box success">
+        <div class="stat-icon">🚩</div>
+        <div class="stat-details">
+          <h4>Missions Réalisées</h4>
+          <div class="stat-number" id="kpi-total-missions">14</div>
+          <div class="stat-subtext">Sur l'ensemble de la rade</div>
+        </div>
+      </div>
+
+      <div class="stat-box secondary">
+        <div class="stat-icon">👥</div>
+        <div class="stat-details">
+          <h4>Bénévoles mobilisés</h4>
+          <div class="stat-number" id="kpi-total-participants">318</div>
+          <div class="stat-subtext">Citoyens & collectifs actifs</div>
+        </div>
+      </div>
+
+      <div class="stat-box warning">
+        <div class="stat-icon">🏖️</div>
+        <div class="stat-details">
+          <h4>Secteurs suivis</h4>
+          <div class="stat-number" id="kpi-total-zones">7 zones</div>
+          <div class="stat-subtext">Brest, Plouzané, Plougastel...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARTE INTERACTIVE ET TIROIR DE DÉTAIL DE ZONE (US-01, US-02) -->
+    <div class="map-view-container">
+      
+      <!-- CARTE -->
+      <div class="map-card-wrapper">
+        <div class="map-toolbar">
+          <div class="map-legend">
+            <span style="font-weight:700; color:#334155;">Légende :</span>
+            <div class="legend-item"><span class="legend-dot dot-clean"></span> Propre</div>
+            <div class="legend-item"><span class="legend-dot dot-watch"></span> À surveiller</div>
+            <div class="legend-item"><span class="legend-dot dot-dirty"></span> Polluée</div>
+            <div class="legend-item"><span class="legend-dot dot-urgent"></span> Prioritaire</div>
+            <div class="legend-item"><span class="legend-dot dot-unknown"></span> Non renseignée</div>
+          </div>
+
+          <!-- BOUTONS ACTIONS CARTE -->
+          <div style="display:flex; gap:8px; align-items:center;">
+            <button class="btn btn-secondary btn-sm" id="recenter-map-btn" title="Recentrer la carte sur la Rade de Brest">
+              🎯 Recentrer
+            </button>
+            <button class="btn btn-warning btn-sm sprint-feature sprint-3-plus" id="trigger-report-btn">
+              ⚠️ Signaler zone sale
+            </button>
+          </div>
+        </div>
+
+        <!-- CARTE LEAFLET OPENSTREETMAP (US-01) -->
+        <div id="rade-map" style="height: 520px; width: 100%; min-height: 520px;"></div>
+
+        <div class="map-disclaimer">
+          ℹ️ <strong>Note de transparence :</strong> État estimé à partir des signalements et actions déclarées par la communauté citoyenne.
+        </div>
+      </div>
+
+      <!-- VOLET DÉTAIL D'UNE ZONE (US-02) -->
+      <aside class="zone-detail-panel" id="zone-detail-box">
+        <div id="zone-detail-content"></div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- ========================================== -->
+  <!-- MODALES DE LA PAGE CARTE -->
+  <!-- ========================================== -->
+
+  <!-- MODAL DÉCLARATION RÉCOLTE (US-11) -->
+  <div class="modal-overlay" id="modal-declare-harvest">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">✍️ Déclarer un ramassage de déchets (US-11)</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.85rem; color:var(--neutral-mid); margin-bottom:14px;">
+          Enregistrez votre récolte en moins de 2 minutes ! Votre déclaration sera transmise à Sofia pour validation.
+        </p>
+        <form id="form-declare-harvest">
+          <div class="form-group">
+            <label class="form-label" for="declare-zone">Secteur nettoyé *</label>
+            <select id="declare-zone" class="form-control" required>
+              <option value="Moulin Blanc">Plage du Moulin Blanc (Brest)</option>
+              <option value="Plage du Minou">Plage du Minou (Plouzané)</option>
+              <option value="Pen-ar-Vir">Pen-ar-Vir (Plougastel)</option>
+              <option value="Port de Commerce">Port de commerce / Château</option>
+              <option value="Anse du Poulmic">Anse du Poulmic (Lanvéoc)</option>
+              <option value="Blancs Sablons">Plage des Blancs Sablons</option>
+            </select>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="declare-bags">Nombre de sacs remplis *</label>
+              <input type="number" id="declare-bags" class="form-control" min="1" max="50" value="2" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="declare-bag-size">Taille du sac étalon *</label>
+              <select id="declare-bag-size" class="form-control">
+                <option value="3">Petit sac cabas (~3 kg)</option>
+                <option value="7" selected>Sac standard 50L (~7 kg)</option>
+                <option value="15">Grand sac renforcé 100L (~15 kg)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="background:#f0fdf4; border:1px solid #bbf7d0; padding:12px; border-radius:var(--radius-sm); margin-bottom:16px;">
+            <div style="font-size:0.8rem; color:#166534; font-weight:700;">Calcul automatique du poids total estimé :</div>
+            <div style="font-size:1.3rem; font-weight:800; color:#15803d;" id="declare-weight-preview">14 kg estimés</div>
+            <div style="font-size:0.72rem; color:#166534;">Formule : Nb de sacs &times; étalon sélectionné.</div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="declare-photo-before">Photo Avant (facultatif)</label>
+              <input type="text" id="declare-photo-before" class="form-control" placeholder="Ex: plage_polluee.jpg">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="declare-photo-after">Photo Après (facultatif)</label>
+              <input type="text" id="declare-photo-after" class="form-control" placeholder="Ex: sacs_rassembles.jpg">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="declare-notes">Commentaires ou types de déchets trouvés</label>
+            <textarea id="declare-notes" class="form-control" rows="2" placeholder="Ex: Bouts de filets et mégots..."></textarea>
+          </div>
+
+          <div class="modal-footer" style="padding-left:0; padding-right:0;">
+            <button type="button" class="btn btn-secondary modal-cancel-btn">Annuler</button>
+            <button type="submit" class="btn btn-primary">Valider ma déclaration</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL SIGNALER ZONE POLLUÉE (US-13) -->
+  <div class="modal-overlay" id="modal-report-zone">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">⚠️ Signaler une zone polluée (US-13)</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.85rem; color:var(--neutral-mid); margin-bottom:14px;">
+          Aidez la communauté à identifier les points critiques sur le littoral brestois. La zone apparaîtra avec le statut "À vérifier".
+        </p>
+        <form id="form-report-zone">
+          <div class="form-group">
+            <label class="form-label" for="report-sector">Localisation / Secteur *</label>
+            <input type="text" id="report-sector" class="form-control" placeholder="Ex: Rive sud du Moulin Blanc" required>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="report-type">Type de pollution principal *</label>
+              <select id="report-type" class="form-control">
+                <option value="Plastiques & microplastiques">Plastiques & microplastiques</option>
+                <option value="Macro-déchets & ferraille">Macro-déchets & ferraille</option>
+                <option value="Filets & engins de pêche fantômes">Filets & engins de pêche</option>
+                <option value="Dépôt sauvage">Dépôt sauvage / encombrants</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="report-urgency">Niveau estimé</label>
+              <select id="report-urgency" class="form-control">
+                <option value="À surveiller">Moyen (À surveiller)</option>
+                <option value="Polluée" selected>Élevé (Polluée)</option>
+                <option value="Prioritaire">Urgent (Prioritaire)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="report-desc">Description courte *</label>
+            <textarea id="report-desc" class="form-control" rows="3" placeholder="Précisez l'accès, l'ampleur..." required></textarea>
+          </div>
+
+          <div class="modal-footer" style="padding-left:0; padding-right:0;">
+            <button type="button" class="btn btn-secondary modal-cancel-btn">Annuler</button>
+            <button type="submit" class="btn btn-warning">Envoyer le signalement</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DOSSIER SCRUM TP -->
+  <div class="modal-overlay" id="modal-scrum-board">
+    <div class="modal-container" style="max-width: 860px;">
+      <div class="modal-header" style="background:#0f172a; color:white;">
+        <h3 class="modal-title" style="color:white;">📋 Dossier de Gestion de Projet Scrum — TP RIC / Océanik</h3>
+        <button class="modal-close-btn" style="color:white;">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:#f8fafc; padding:12px; border-radius:var(--radius-sm); border:1px solid var(--border); margin-bottom:16px;">
+          <h4 style="font-size:0.95rem; margin-bottom:6px; color:#0f172a;">👥 Organisation de l'Équipe Scrum (TD1 / TP)</h4>
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:8px; font-size:0.82rem;">
+            <div><strong>Product Owner :</strong> Allan Steed</div>
+            <div><strong>Scrum Master :</strong> Mathis</div>
+            <div><strong>Développeurs :</strong> Tim, Jules-Yann, Simon-Noël</div>
+          </div>
+        </div>
+
+        <h4 style="margin-bottom:10px;">🏃‍♂️ Découpage des 4 Sprints du TP (US-01 à US-19)</h4>
+        <div class="scrum-board-summary">
+          <div class="sprint-summary-card">
+            <h4>Sprint 1 : Fondations & Découverte Rade</h4>
+            <div style="font-size:0.75rem; color:#0284c7; font-weight:700; margin-bottom:4px;">14 pts • Must Have</div>
+            <ul>
+              <li><span class="us-pill-tag">US-01</span> Carte interactive de la Rade</li>
+              <li><span class="us-pill-tag">US-02</span> Fiche zone & historique</li>
+              <li><span class="us-pill-tag">US-03</span> Indicateurs d'impact global</li>
+              <li><span class="us-pill-tag">US-07</span> Inscription & compte rapide</li>
+            </ul>
+            <div style="font-size:0.72rem; color:#10b981; font-weight:600; margin-top:6px;">✓ Démontré à l'équipe jumelle</div>
+          </div>
+
+          <div class="sprint-summary-card">
+            <h4>Sprint 2 : Mobilisation & Missions</h4>
+            <div style="font-size:0.75rem; color:#0284c7; font-weight:700; margin-bottom:4px;">20 pts • Must & Should</div>
+            <ul>
+              <li><span class="us-pill-tag">US-04</span> Liste & filtres des missions</li>
+              <li><span class="us-pill-tag">US-05</span> Fiche détaillée de mission</li>
+              <li><span class="us-pill-tag">US-06</span> Inscription & Mes missions</li>
+              <li><span class="us-pill-tag">US-08</span> Création de mission (Marc)</li>
+              <li><span class="us-pill-tag">US-09</span> Suivi des inscrits</li>
+              <li><span class="us-pill-tag">US-10</span> Modifier / annuler mission</li>
+            </ul>
+            <div style="font-size:0.72rem; color:#10b981; font-weight:600; margin-top:6px;">✓ Démontré à l'équipe jumelle</div>
+          </div>
+
+          <div class="sprint-summary-card">
+            <h4>Sprint 3 : Récolte, Sofia & Carte au vert</h4>
+            <div style="font-size:0.75rem; color:#0284c7; font-weight:700; margin-bottom:4px;">15 pts • Cœur MVP</div>
+            <ul>
+              <li><span class="us-pill-tag">US-11</span> Déclarer récolte (sacs étalons)</li>
+              <li><span class="us-pill-tag">US-12</span> Espace validation de Sofia</li>
+              <li><span class="us-pill-tag">US-13</span> Signaler zone polluée</li>
+              <li><span class="us-pill-tag">BOUCLE</span> Zone passe au VERT sur carte !</li>
+            </ul>
+            <div style="font-size:0.72rem; color:#10b981; font-weight:600; margin-top:6px;">✓ Démontré à l'équipe jumelle</div>
+          </div>
+
+          <div class="sprint-summary-card">
+            <h4>Sprint 4 : Gamification & Bilan Collectif</h4>
+            <div style="font-size:0.75rem; color:#0284c7; font-weight:700; margin-bottom:4px;">23 pts • Finalisation</div>
+            <ul>
+              <li><span class="us-pill-tag">US-14</span> Profil d'engagement personnel</li>
+              <li><span class="us-pill-tag">US-15</span> Attribution points d'impact</li>
+              <li><span class="us-pill-tag">US-16</span> 5 médailles & badges virtuels</li>
+              <li><span class="us-pill-tag">US-17</span> Classement responsable RSE</li>
+              <li><span class="us-pill-tag">US-18</span> Profils organisations/écoles</li>
+              <li><span class="us-pill-tag">US-19</span> Fiches sensibilisation littoral</li>
+            </ul>
+            <div style="font-size:0.72rem; color:#10b981; font-weight:600; margin-top:6px;">✓ MVP Complet livré</div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px; border-top:1px solid var(--border); padding-top:12px;">
+          <h4 style="margin-bottom:8px;">📌 Rappel des Critères Qualité Scrum (Page 25)</h4>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; font-size:0.8rem;">
+            <div style="background:#f1f5f9; padding:10px; border-radius:var(--radius-sm);">
+              <strong>Definition of Ready (DoR) :</strong>
+              <p>Objectif clair, persona identifié, critères testables, dépendances identifiées, taille adaptée au sprint de 2h, estimée par l'équipe.</p>
+            </div>
+            <div style="background:#f1f5f9; padding:10px; border-radius:var(--radius-sm);">
+              <strong>Definition of Done (DoD) :</strong>
+              <p>Critères d'acceptation respectés, test manuel validé, responsive mobile/desktop, erreurs gérées, pas de données sensibles exposées, validé par Allan (PO).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary modal-cancel-btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <!-- SCRIPTS JS -->
+  <!-- SCRIPTS JS : LEAFLET & LOGIQUE SPRINT 4 -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    if (typeof L === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"><\/script>');
+    }
+  </script>
+  <script src="js/data.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/missions.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/ranking.js"></script>
+  <script src="js/sprint.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
